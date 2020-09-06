@@ -1,0 +1,284 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://assets/tilesets/fog_tileset.png" type="Texture" id=1]
+[ext_resource path="res://assets/tilesets/markings_tileset.png" type="Texture" id=2]
+[ext_resource path="res://assets/tilesets/occlusion_tileset.png" type="Texture" id=3]
+[ext_resource path="res://assets/world/door_EW.png" type="Texture" id=4]
+[ext_resource path="res://assets/tilesets/pathing_tileset.png" type="Texture" id=5]
+[ext_resource path="res://assets/world/control_board.png" type="Texture" id=6]
+[ext_resource path="res://assets/world/upgrade_screen_sheet.png" type="Texture" id=7]
+[ext_resource path="res://src/world/Level.gd" type="Script" id=8]
+[ext_resource path="res://src/world/AutoTiling/TransparencyMap.gd" type="Script" id=9]
+[ext_resource path="res://assets/world/door_NS.png" type="Texture" id=10]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=11]
+[ext_resource path="res://src/world/AutoTiling/Editor.gd" type="Script" id=12]
+[ext_resource path="res://src/world/Mobs/Bugs.gd" type="Script" id=13]
+[ext_resource path="res://src/world/AutoTiling/PathMap.gd" type="Script" id=14]
+[ext_resource path="res://src/world/AutoTiling/Fog.gd" type="Script" id=15]
+[ext_resource path="res://src/world/AutoTiling/Objects.gd" type="Script" id=16]
+[ext_resource path="res://src/world/AutoTiling/Terrain.gd" type="Script" id=17]
+[ext_resource path="res://src/world/Statics/Statics.gd" type="Script" id=18]
+[ext_resource path="res://assets/tilesets/ShipTileset.tres" type="TileSet" id=19]
+[ext_resource path="res://src/world/Mobs/Allies.gd" type="Script" id=20]
+[ext_resource path="res://src/Globals/ShineTimer.gd" type="Script" id=21]
+
+[sub_resource type="TileSet" id=1]
+2/name = "Control Board"
+2/texture = ExtResource( 6 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+4/name = "Door EW"
+4/texture = ExtResource( 4 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 32, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Door NS"
+5/texture = ExtResource( 10 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 32, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "Upgrade Screen"
+6/texture = ExtResource( 7 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 32, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "Transparent"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Opaque"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 16, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="TileSet" id=5]
+0/name = "Walkable"
+0/texture = ExtResource( 5 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/navigation = SubResource( 4 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Unwalkable"
+1/texture = ExtResource( 5 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 16, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+
+[sub_resource type="TileSet" id=7]
+0/name = "Danger"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 160, 96 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 1, 1 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=6]
+0/name = "Fog"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 384, 32 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 186, Vector2( 0, 1 ), 16, Vector2( 1, 0 ), 48, Vector2( 1, 1 ), 18, Vector2( 2, 0 ), 144, Vector2( 2, 1 ), 24, Vector2( 3, 0 ), 176, Vector2( 3, 1 ), 50, Vector2( 4, 0 ), 152, Vector2( 4, 1 ), 26, Vector2( 5, 0 ), 184, Vector2( 5, 1 ), 178, Vector2( 6, 0 ), 154, Vector2( 6, 1 ), 58, Vector2( 7, 0 ), 254, Vector2( 7, 1 ), 443, Vector2( 8, 0 ), 56, Vector2( 8, 1 ), 146, Vector2( 9, 0 ), 440, Vector2( 9, 1 ), 182, Vector2( 10, 0 ), 218, Vector2( 10, 1 ), 59, Vector2( 11, 0 ), 432, Vector2( 11, 1 ), 54, Vector2( 12, 0 ), 216, Vector2( 12, 1 ), 27, Vector2( 13, 0 ), 504, Vector2( 13, 1 ), 438, Vector2( 14, 0 ), 219, Vector2( 14, 1 ), 63, Vector2( 15, 0 ), 248, Vector2( 15, 1 ), 434, Vector2( 16, 0 ), 155, Vector2( 16, 1 ), 62, Vector2( 17, 0 ), 255, Vector2( 17, 1 ), 507, Vector2( 18, 0 ), 447, Vector2( 18, 1 ), 510, Vector2( 19, 0 ), 191, Vector2( 19, 1 ), 251, Vector2( 20, 0 ), 446, Vector2( 20, 1 ), 506, Vector2( 21, 0 ), 187, Vector2( 21, 1 ), 250, Vector2( 22, 0 ), 190, Vector2( 22, 1 ), 442, Vector2( 23, 0 ), 511 ]
+0/autotile/icon_coordinate = Vector2( 0, 1 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Editor" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+script = ExtResource( 12 )
+terrain_node_path = NodePath("../../Level/Terrain")
+objects_node_path = NodePath("../../Level/Objects")
+fog_node_path = NodePath("../../Level/Fog")
+
+[node name="Terrain" type="TileMap" parent="."]
+material = ExtResource( 11 )
+tile_set = ExtResource( 19 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 2147484672
+collision_mask = 0
+format = 1
+script = ExtResource( 17 )
+
+[node name="TransparencyMap" type="TileMap" parent="Terrain"]
+material = ExtResource( 11 )
+position = Vector2( -8, -8 )
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2048
+collision_mask = 0
+format = 1
+script = ExtResource( 9 )
+fog_map_path = "../../Fog"
+
+[node name="Navigation2D" type="Navigation2D" parent="Terrain"]
+
+[node name="PathMap" type="TileMap" parent="Terrain/Navigation2D"]
+material = ExtResource( 11 )
+position = Vector2( -8, -8 )
+tile_set = SubResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 14 )
+
+[node name="Markings" type="TileMap" parent="."]
+tile_set = SubResource( 7 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="Objects" type="YSort" parent="."]
+script = ExtResource( 16 )
+
+[node name="Statics" type="YSort" parent="Objects"]
+script = ExtResource( 18 )
+
+[node name="Mobs" type="YSort" parent="Objects"]
+
+[node name="Bugs" type="YSort" parent="Objects/Mobs"]
+script = ExtResource( 13 )
+
+[node name="Allies" type="YSort" parent="Objects/Mobs"]
+script = ExtResource( 20 )
+
+[node name="Fog" type="TileMap" parent="."]
+visible = false
+material = ExtResource( 11 )
+position = Vector2( -8, -8 )
+tile_set = SubResource( 6 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 1024
+collision_mask = 1024
+format = 1
+tile_data = PoolIntArray( 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 983066, 0, 0, 983067, 0, 0, 983068, 0, 0, 1048602, 0, 0, 1048603, 0, 0, 1048604, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1310746, 0, 0, 1310747, 0, 0, 1310748, 0, 0, 1310749, 0, 0, 1310750, 0, 0 )
+script = ExtResource( 15 )
+
+[node name="ShineTimer" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 21 )
+[connection signal="timeout" from="ShineTimer" to="ShineTimer" method="_on_ShineTimer_timeout"]

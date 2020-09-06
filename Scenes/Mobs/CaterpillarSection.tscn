@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=1]
+[ext_resource path="res://assets/mobs/Bug/Bug_Body.png" type="Texture" id=2]
+[ext_resource path="res://src/world/Mobs/AreaOfTarget.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.5
+
+[node name="HurtAreaSection" type="Area2D"]
+input_pickable = false
+collision_layer = 2147483904
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="Section" type="Sprite" parent="."]
+material = ExtResource( 1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 1 )

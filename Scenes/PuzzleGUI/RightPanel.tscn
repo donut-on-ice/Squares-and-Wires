@@ -1,0 +1,461 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/PuzzleGUI/OutputLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_top.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_bottom.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/io_panels/button_big_left_hovered.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/io_panels/separator_outputs.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/io_panels/button_big_right_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/io_panels/button_big_right.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/io_panels/button_big_left_pressed.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/io_panels/button_big_right_hovered.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/io_panels/button_big_left.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/io_panels/table_4x16.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/labels/o4.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/PuzzleGUI/Nr.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/PuzzleGUI/OTButton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/ui/labels/o2.png" type="Texture" id=16]
+[ext_resource path="res://assets/ui/labels/o3.png" type="Texture" id=17]
+[ext_resource path="res://assets/ui/labels/o1.png" type="Texture" id=18]
+[ext_resource path="res://assets/ui/io_panels/button_big_lef_bitmask.png" type="BitMap" id=19]
+[ext_resource path="res://src/puzzle/gui/IOPanel/RightPanel.gd" type="Script" id=20]
+[ext_resource path="res://src/puzzle/gui/IOPanel/OutputPanelLabelSeparator.gd" type="Script" id=21]
+[ext_resource path="res://src/puzzle/gui/IOPanel/OTHeader.gd" type="Script" id=22]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_bottom_bitmask.png" type="BitMap" id=23]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_top_bitmask.png" type="BitMap" id=24]
+[ext_resource path="res://assets/ui/io_panels/button_big_right_bitmask.png" type="BitMap" id=25]
+[ext_resource path="res://src/puzzle/gui/SimpleShapes/BitMaskShape.gd" type="Script" id=26]
+
+
+[node name="RightPanel" type="HBoxContainer"]
+material = ExtResource( 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -285.0
+margin_top = -175.0
+margin_right = -142.0
+rect_min_size = Vector2( 143, 0 )
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 2
+size_flags_horizontal = 15
+size_flags_vertical = 15
+custom_constants/separation = -9
+alignment = 2
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OTM" type="MarginContainer" parent="."]
+use_parent_material = true
+margin_right = 105.0
+margin_bottom = 175.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="TBackground" type="TextureRect" parent="OTM"]
+material = ExtResource( 1 )
+margin_right = 105.0
+margin_bottom = 175.0
+mouse_filter = 0
+size_flags_horizontal = 9
+size_flags_vertical = 0
+texture = ExtResource( 12 )
+stretch_mode = 4
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TMargin" type="MarginContainer" parent="OTM/TBackground"]
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 2
+custom_constants/margin_left = 14
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="OT" type="VBoxContainer" parent="OTM/TBackground/TMargin"]
+use_parent_material = true
+margin_left = 14.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 175.0
+custom_constants/separation = 3
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Header" type="HBoxContainer" parent="OTM/TBackground/TMargin/OT"]
+use_parent_material = true
+margin_right = 91.0
+margin_bottom = 9.0
+custom_constants/separation = 4
+script = ExtResource( 22 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HiddenNr" parent="OTM/TBackground/TMargin/OT/Header" instance=ExtResource( 14 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 14.0
+margin_bottom = 9.0
+use_space_for_decimal_zero = true
+hide_decimal_zero = true
+is_just_space = true
+
+[node name="Labels" type="HBoxContainer" parent="OTM/TBackground/TMargin/OT/Header"]
+use_parent_material = true
+margin_left = 18.0
+margin_right = 76.0
+margin_bottom = 9.0
+custom_constants/separation = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="O4" type="TextureRect" parent="OTM/TBackground/TMargin/OT/Header/Labels"]
+use_parent_material = true
+margin_right = 13.0
+margin_bottom = 9.0
+texture = ExtResource( 13 )
+
+[node name="O3" type="TextureRect" parent="OTM/TBackground/TMargin/OT/Header/Labels"]
+use_parent_material = true
+margin_left = 15.0
+margin_right = 28.0
+margin_bottom = 9.0
+texture = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="O2" type="TextureRect" parent="OTM/TBackground/TMargin/OT/Header/Labels"]
+use_parent_material = true
+margin_left = 30.0
+margin_right = 43.0
+margin_bottom = 9.0
+texture = ExtResource( 16 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="O1" type="TextureRect" parent="OTM/TBackground/TMargin/OT/Header/Labels"]
+use_parent_material = true
+margin_left = 45.0
+margin_right = 58.0
+margin_bottom = 9.0
+texture = ExtResource( 18 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OTBody" type="VBoxContainer" parent="OTM/TBackground/TMargin/OT"]
+use_parent_material = true
+margin_top = 12.0
+margin_right = 91.0
+margin_bottom = 171.0
+custom_constants/separation = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OTButton0" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_right = 91.0
+
+[node name="OTButton1" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 10.0
+margin_right = 91.0
+margin_bottom = 19.0
+index = 1
+
+[node name="OTButton2" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 20.0
+margin_right = 91.0
+margin_bottom = 29.0
+index = 2
+
+[node name="OTButton3" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 30.0
+margin_right = 91.0
+margin_bottom = 39.0
+index = 3
+
+[node name="OTButton4" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 40.0
+margin_right = 91.0
+margin_bottom = 49.0
+index = 4
+
+[node name="OTButton5" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 50.0
+margin_right = 91.0
+margin_bottom = 59.0
+index = 5
+
+[node name="OTButton6" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 60.0
+margin_right = 91.0
+margin_bottom = 69.0
+index = 6
+
+[node name="OTButton7" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 70.0
+margin_right = 91.0
+margin_bottom = 79.0
+index = 7
+
+[node name="OTButton8" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 80.0
+margin_right = 91.0
+margin_bottom = 89.0
+index = 8
+
+[node name="OTButton9" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 90.0
+margin_right = 91.0
+margin_bottom = 99.0
+index = 9
+
+[node name="OTButton10" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 100.0
+margin_right = 91.0
+margin_bottom = 109.0
+index = 10
+
+[node name="OTButton11" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 110.0
+margin_right = 91.0
+margin_bottom = 119.0
+index = 11
+
+[node name="OTButton12" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 120.0
+margin_right = 91.0
+margin_bottom = 129.0
+index = 12
+
+[node name="OTButton13" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 130.0
+margin_right = 91.0
+margin_bottom = 139.0
+index = 13
+
+[node name="OTButton14" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 140.0
+margin_right = 91.0
+margin_bottom = 149.0
+index = 14
+
+[node name="OTButton15" parent="OTM/TBackground/TMargin/OT/OTBody" instance=ExtResource( 15 )]
+margin_top = 150.0
+margin_right = 91.0
+margin_bottom = 159.0
+index = 15
+
+[node name="OPM" type="MarginContainer" parent="."]
+use_parent_material = true
+margin_left = 96.0
+margin_right = 143.0
+margin_bottom = 175.0
+mouse_filter = 2
+custom_constants/margin_top = -16
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="OP" type="VBoxContainer" parent="OPM"]
+use_parent_material = true
+margin_top = -16.0
+margin_right = 47.0
+margin_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TopMargin" type="MarginContainer" parent="OPM/OP"]
+use_parent_material = true
+margin_right = 47.0
+margin_bottom = 10.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="Panel" type="HBoxContainer" parent="OPM/OP"]
+use_parent_material = true
+margin_top = 10.0
+margin_right = 47.0
+margin_bottom = 152.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CenterOTExpand" type="CenterContainer" parent="OPM/OP/Panel"]
+use_parent_material = true
+margin_right = 8.0
+margin_bottom = 142.0
+mouse_filter = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OTExpand" type="TextureButton" parent="OPM/OP/Panel/CenterOTExpand"]
+use_parent_material = true
+margin_top = 64.0
+margin_right = 8.0
+margin_bottom = 78.0
+focus_mode = 1
+size_flags_horizontal = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 5 )
+texture_click_mask = ExtResource( 19 )
+stretch_mode = 3
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OP" type="VBoxContainer" parent="OPM/OP/Panel"]
+use_parent_material = true
+margin_left = 8.0
+margin_right = 39.0
+margin_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+size_flags_horizontal = 0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Top" type="TextureRect" parent="OPM/OP/Panel/OP"]
+material = ExtResource( 1 )
+margin_right = 31.0
+margin_bottom = 4.0
+texture = ExtResource( 3 )
+script = ExtResource( 26 )
+__meta__ = {
+"_editor_description_": ""
+}
+bitmask = ExtResource( 24 )
+
+[node name="OLabel4" parent="OPM/OP/Panel/OP" instance=ExtResource( 2 )]
+margin_top = 4.0
+margin_right = 31.0
+margin_bottom = 30.0
+index = 4
+
+[node name="Line4" type="TextureRect" parent="OPM/OP/Panel/OP"]
+material = ExtResource( 1 )
+margin_top = 30.0
+margin_right = 31.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_description_": ""
+}
+index = 4
+
+[node name="OLabel3" parent="OPM/OP/Panel/OP" instance=ExtResource( 2 )]
+margin_top = 40.0
+margin_right = 31.0
+margin_bottom = 66.0
+index = 3
+
+[node name="Line3" type="TextureRect" parent="OPM/OP/Panel/OP"]
+material = ExtResource( 1 )
+margin_top = 66.0
+margin_right = 31.0
+margin_bottom = 76.0
+texture = ExtResource( 6 )
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_description_": ""
+}
+index = 3
+
+[node name="OLabel2" parent="OPM/OP/Panel/OP" instance=ExtResource( 2 )]
+margin_top = 76.0
+margin_right = 31.0
+margin_bottom = 102.0
+index = 2
+
+[node name="Line2" type="TextureRect" parent="OPM/OP/Panel/OP"]
+material = ExtResource( 1 )
+margin_top = 102.0
+margin_right = 31.0
+margin_bottom = 112.0
+texture = ExtResource( 6 )
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OLabel1" parent="OPM/OP/Panel/OP" instance=ExtResource( 2 )]
+margin_top = 112.0
+margin_right = 31.0
+margin_bottom = 138.0
+
+[node name="Bottom" type="TextureRect" parent="OPM/OP/Panel/OP"]
+material = ExtResource( 1 )
+margin_top = 138.0
+margin_right = 31.0
+margin_bottom = 142.0
+texture = ExtResource( 4 )
+script = ExtResource( 26 )
+__meta__ = {
+"_editor_description_": ""
+}
+bitmask = ExtResource( 23 )
+
+[node name="CenterOTColapse" type="CenterContainer" parent="OPM/OP/Panel"]
+use_parent_material = true
+margin_left = 39.0
+margin_right = 47.0
+margin_bottom = 142.0
+mouse_filter = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OTColapse" type="TextureButton" parent="OPM/OP/Panel/CenterOTColapse"]
+use_parent_material = true
+margin_top = 64.0
+margin_right = 8.0
+margin_bottom = 78.0
+grow_vertical = 0
+focus_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 10 )
+texture_click_mask = ExtResource( 25 )
+stretch_mode = 3
+__meta__ = {
+"_editor_description_": ""
+}
+[connection signal="pressed" from="OPM/OP/Panel/CenterOTExpand/OTExpand" to="." method="_on_OTExpand_pressed"]
+[connection signal="pressed" from="OPM/OP/Panel/CenterOTColapse/OTColapse" to="." method="_on_OTColapse_pressed"]

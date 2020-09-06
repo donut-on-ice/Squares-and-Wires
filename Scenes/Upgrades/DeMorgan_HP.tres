@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/Resources/Health.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+level = 0
+title = "HP I"
+question = "Legile lui De Morgan"
+right_answer = "!(AxB)=!A+!B si !(A+B)=!Ax!B"
+upgraded_this_level = false
+wrong_answers = PoolStringArray( "(AxB)=A+B si (A+B)=AxB", "(!Ax!B)=!A+!B si (A+B)=AxB", "!(AxB)=!A+B si !(A+B)=!AxB", "!(AxB)=A+!B si !(A+B)=Ax!B", "(A^B)=!AxB+Ax!B", "(A+1)=1 si (A+0)=A", "(Ax1)=A si (Ax0)=0" )
+health_per_level = [ 0, 1, 2, 3, 4 ]

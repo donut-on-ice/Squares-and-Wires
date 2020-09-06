@@ -1,0 +1,258 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=1]
+[ext_resource path="res://assets/world/tool_box_shadow.png" type="Texture" id=2]
+[ext_resource path="res://assets/world/tool_box.png" type="Texture" id=3]
+[ext_resource path="res://src/world/Statics/ToolBox.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 7 )
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Error"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Hovered Locked"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Hovered Shining Locked"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Idle Locked"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Idle Opened"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Idle Shining Locked"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Opening"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+priority = 3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 1
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 1
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachine" id=26]
+states/Error/node = SubResource( 3 )
+states/Error/position = Vector2( 205, 30 )
+"states/Hovered Locked/node" = SubResource( 4 )
+"states/Hovered Locked/position" = Vector2( 320, -36 )
+"states/Hovered Shining Locked/node" = SubResource( 5 )
+"states/Hovered Shining Locked/position" = Vector2( 69, -36 )
+"states/Idle Locked/node" = SubResource( 6 )
+"states/Idle Locked/position" = Vector2( 320, 94 )
+"states/Idle Open/node" = SubResource( 7 )
+"states/Idle Open/position" = Vector2( 320, 338 )
+"states/Idle Shining Locked/node" = SubResource( 8 )
+"states/Idle Shining Locked/position" = Vector2( 69, 99 )
+states/Opening/node = SubResource( 9 )
+states/Opening/position = Vector2( 320, 261 )
+transitions = [ "Idle Locked", "Error", SubResource( 10 ), "Error", "Idle Locked", SubResource( 11 ), "Idle Locked", "Hovered Locked", SubResource( 12 ), "Hovered Locked", "Idle Locked", SubResource( 13 ), "Hovered Shining Locked", "Idle Shining Locked", SubResource( 14 ), "Idle Shining Locked", "Hovered Shining Locked", SubResource( 15 ), "Idle Locked", "Idle Shining Locked", SubResource( 16 ), "Idle Shining Locked", "Idle Locked", SubResource( 17 ), "Idle Shining Locked", "Error", SubResource( 18 ), "Idle Locked", "Opening", SubResource( 19 ), "Idle Shining Locked", "Opening", SubResource( 20 ), "Opening", "Idle Open", SubResource( 21 ), "Hovered Shining Locked", "Hovered Locked", SubResource( 22 ), "Hovered Locked", "Hovered Shining Locked", SubResource( 23 ), "Hovered Shining Locked", "Error", SubResource( 24 ), "Hovered Locked", "Error", SubResource( 25 ) ]
+start_node = "Idle Locked"
+end_node = "Idle Open"
+graph_offset = Vector2( -37.8362, -84.8817 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+
+[sub_resource type="Animation" id=28]
+length = 0.6
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=29]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=30]
+length = 0.3
+step = 0.075
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 5 ]
+}
+
+[sub_resource type="Animation" id=31]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=32]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+
+[sub_resource type="Animation" id=33]
+length = 0.3
+step = 0.075
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 0 ]
+}
+
+[sub_resource type="Animation" id=34]
+length = 0.375
+step = 0.075
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19 ]
+}
+
+[node name="Tool Box" type="StaticBody2D"]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="Box" type="Sprite" parent="."]
+material = ExtResource( 1 )
+texture = ExtResource( 3 )
+vframes = 5
+hframes = 5
+
+[node name="Shadow" type="Sprite" parent="."]
+material = ExtResource( 1 )
+texture = ExtResource( 2 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 3 )
+shape = SubResource( 1 )
+
+[node name="ClickArea" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="ClickArea"]
+visible = false
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 26 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 27 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Error = SubResource( 28 )
+"anims/Hovered Locked" = SubResource( 29 )
+"anims/Hovered Shining Locked" = SubResource( 30 )
+"anims/Idle Locked" = SubResource( 31 )
+"anims/Idle Opened" = SubResource( 32 )
+"anims/Idle Shining Locked" = SubResource( 33 )
+anims/Opening = SubResource( 34 )

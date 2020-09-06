@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=1]
+[ext_resource path="res://assets/ui/tools_panel/arrow_icon_hovered.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/tools_panel/wire_icon_hovered.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/tools_panel/arrow_icon_idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/tools_panel/panle_button_pressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/tools_panel/crowbar_icon_hovered.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/tools_panel/crowbar_icon_idle.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/tools_panel/cutters_icon_idle.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/tools_panel/wire_icon_idle.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/tools_panel/cutters_icon_hovered.png" type="Texture" id=10]
+[ext_resource path="res://src/puzzle/gui/MouseToolButton.gd" type="Script" id=11]
+[ext_resource path="res://assets/ui/tools_panel/background.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/tools_panel/button_bitmask.png" type="BitMap" id=15]
+[ext_resource path="res://assets/ui/tools_panel/background_bitmask.png" type="BitMap" id=16]
+[ext_resource path="res://src/puzzle/gui/SimpleShapes/BitMaskShape.gd" type="Script" id=17]
+
+[node name="ToolsPanel" type="TextureRect"]
+material = ExtResource( 1 )
+use_parent_material = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -146.0
+margin_right = -73.0
+margin_bottom = 50.0
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 2
+texture = ExtResource( 12 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+bitmask = ExtResource( 16 )
+
+[node name="Panel" type="VBoxContainer" parent="."]
+use_parent_material = true
+margin_right = 73.0
+margin_bottom = 50.0
+mouse_filter = 2
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpperMarign" type="MarginContainer" parent="Panel"]
+use_parent_material = true
+margin_right = 73.0
+margin_bottom = 26.0
+mouse_filter = 2
+custom_constants/margin_top = 6
+custom_constants/margin_left = 5
+
+[node name="Upper" type="HBoxContainer" parent="Panel/UpperMarign"]
+use_parent_material = true
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 73.0
+margin_bottom = 26.0
+mouse_filter = 2
+custom_constants/separation = 7
+
+[node name="Arrow" type="TextureButton" parent="Panel/UpperMarign/Upper"]
+use_parent_material = true
+margin_right = 21.0
+margin_bottom = 20.0
+focus_mode = 1
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 5 )
+texture_click_mask = ExtResource( 15 )
+script = ExtResource( 11 )
+
+[node name="Wire" type="TextureButton" parent="Panel/UpperMarign/Upper"]
+use_parent_material = true
+margin_left = 28.0
+margin_right = 49.0
+margin_bottom = 20.0
+focus_mode = 1
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+texture_click_mask = ExtResource( 15 )
+script = ExtResource( 11 )
+mouse_tool_index = 1
+
+[node name="LowerMargin" type="MarginContainer" parent="Panel"]
+use_parent_material = true
+margin_top = 24.0
+margin_right = 73.0
+margin_bottom = 44.0
+mouse_filter = 2
+custom_constants/margin_left = 19
+
+[node name="Lower" type="HBoxContainer" parent="Panel/LowerMargin"]
+use_parent_material = true
+margin_left = 19.0
+margin_right = 73.0
+margin_bottom = 20.0
+mouse_filter = 2
+custom_constants/separation = 7
+
+[node name="Crowbar" type="TextureButton" parent="Panel/LowerMargin/Lower"]
+use_parent_material = true
+margin_right = 21.0
+margin_bottom = 20.0
+focus_mode = 1
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 5 )
+texture_click_mask = ExtResource( 15 )
+script = ExtResource( 11 )
+mouse_tool_index = 2
+
+[node name="Cutter" type="TextureButton" parent="Panel/LowerMargin/Lower"]
+use_parent_material = true
+margin_left = 28.0
+margin_right = 49.0
+margin_bottom = 20.0
+focus_mode = 1
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 5 )
+texture_click_mask = ExtResource( 15 )
+script = ExtResource( 11 )
+mouse_tool_index = 3

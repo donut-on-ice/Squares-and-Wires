@@ -1,0 +1,334 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Holders/PuzzleLayerHolder.gd" type="Script" id=1]
+[ext_resource path="res://assets/tilesets/PuzzleTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=3]
+[ext_resource path="res://assets/tilesets/debug_tileset.png" type="Texture" id=4]
+[ext_resource path="res://src/Watchers/CameraWatcher.gd" type="Script" id=5]
+[ext_resource path="res://src/puzzle/ComponentPreview.gd" type="Script" id=6]
+[ext_resource path="res://src/Watchers/PuzzleIOStateWatcher.gd" type="Script" id=8]
+[ext_resource path="res://src/puzzle/PuzzleTileMap.gd" type="Script" id=9]
+
+[sub_resource type="TileSet" id=1]
+0/name = "debug_tileset.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "debug_tileset.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 32, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "debug_tileset.png 2"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 32, 0, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="GDScript" id=2]
+script/source = "class_name MouseWatcher extends Node
+
+#### VARS ####
+
+# enums
+# consts
+# settings
+# singletons
+# nodes
+onready var Parent = get_parent()
+var this_node = self
+
+# public
+var notify_parent:bool = false setget set_notify_parent
+
+# private
+# signals
+
+#--# VARS #--#
+
+
+
+#### MAIN METHODS ####
+
+func _ready() -> void:
+	
+	add_to_group(Groups.MOUSE_WATCHERS)
+	
+	if !notify_parent or Parent == null:
+		return
+	
+	self.call(Groups.MouseWatcherFuncs.ON_MOUSE_TOOL_CHANGE)
+	self.call(Groups.MouseWatcherFuncs.ON_SELECTED_COMPONENT_CHANGE)
+
+#--# MAIN METHODS #--#
+
+
+
+#### STATE CHANGING METHODS ####
+
+# setters
+func set_notify_parent(b:bool) -> void:
+	notify_parent = b
+	
+	if !notify_parent or Parent == null:
+		return
+	
+	self.call(Groups.MouseWatcherFuncs.ON_MOUSE_TOOL_CHANGE)
+	self.call(Groups.MouseWatcherFuncs.ON_SELECTED_COMPONENT_CHANGE)
+
+# updates
+
+#--# STATE CHANGING METHODS #--#
+
+
+
+#### NON STATE CHANGING METHODS ####
+### utils ###
+### bools ###
+#--# NON STATE CHANGING METHODS #--#
+
+
+
+#### GROUP METHODS ####
+func on_mouse_tool_change() -> void:
+	
+	if !notify_parent or Parent == null:
+		return
+	
+	if Parent.has_method(Groups.MouseWatcherFuncs.ON_MOUSE_TOOL_CHANGE):
+		Parent.call(Groups.MouseWatcherFuncs.ON_MOUSE_TOOL_CHANGE)
+
+
+func on_selected_component_change() -> void:
+	
+	if !notify_parent or Parent == null:
+		return
+	
+	if Parent.has_method(Groups.MouseWatcherFuncs.ON_SELECTED_COMPONENT_CHANGE):
+		Parent.call(Groups.MouseWatcherFuncs.ON_SELECTED_COMPONENT_CHANGE)
+
+
+#--# GROUP METHODS #--# 
+
+
+#### SIGNAL METHODS ####
+#--# SIGNAL METHODS #--# 
+
+
+
+#### CLASSES ####
+#--# CLASSES #--#
+"
+
+[node name="PuzzleLayers" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Technical" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Ground" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Wires" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+script = ExtResource( 9 )
+
+[node name="Walls" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Gates" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Lights" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Labels" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Jacks" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Bridges" type="TileMap" parent="."]
+light_mask = 0
+material = ExtResource( 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+
+[node name="Props" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+format = 1
+
+[node name="Debug" type="TileMap" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.498039 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="CameraObserver" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="IOStateObserver" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="GhostComponent" type="Node2D" parent="."]
+visible = false
+material = ExtResource( 3 )
+script = ExtResource( 6 )
+
+[node name="VisibleComponentBottom" type="TileMap" parent="GhostComponent"]
+light_mask = 0
+material = ExtResource( 3 )
+use_parent_material = true
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="VisibleComponentTop" type="TileMap" parent="GhostComponent"]
+light_mask = 0
+material = ExtResource( 3 )
+use_parent_material = true
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="VisibleLights" type="TileMap" parent="GhostComponent"]
+light_mask = 0
+material = ExtResource( 3 )
+use_parent_material = true
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_y_sort = true
+collision_layer = 0
+collision_mask = 0
+occluder_light_mask = 0
+format = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="MouseToolObserver" type="Node" parent="GhostComponent"]
+script = SubResource( 2 )

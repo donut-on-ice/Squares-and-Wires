@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/ui/io_panels/in_light_red.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/PuzzleGUI/Nr.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ui/io_panels/mask_hoverd_2x4.png" type="Texture" id=3]
+[ext_resource path="res://src/puzzle/gui/IOPanel/ITButton.gd" type="Script" id=4]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=5]
+[ext_resource path="res://assets/ui/io_panels/mask_empty_2x4.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/io_panels/mask_selected_2x4.png" type="Texture" id=7]
+[ext_resource path="res://src/puzzle/gui/IOPanel/InputLight.gd" type="Script" id=9]
+
+
+[node name="ITButton" type="TextureButton"]
+light_mask = 0
+material = ExtResource( 5 )
+margin_right = 76.0
+margin_bottom = 9.0
+focus_mode = 1
+toggle_mode = true
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 7 )
+stretch_mode = 4
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ITLine" type="HBoxContainer" parent="."]
+use_parent_material = true
+margin_right = 14.0
+margin_bottom = 9.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nr" parent="ITLine" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 14.0
+margin_bottom = 9.0
+use_space_for_decimal_zero = true
+
+[node name="LightsMargin" type="CenterContainer" parent="ITLine"]
+use_parent_material = true
+margin_left = 19.0
+margin_right = 76.0
+margin_bottom = 9.0
+mouse_filter = 1
+
+[node name="Lights" type="HBoxContainer" parent="ITLine/LightsMargin"]
+use_parent_material = true
+margin_top = 2.0
+margin_right = 57.0
+margin_bottom = 7.0
+custom_constants/separation = 3
+
+[node name="Light4" type="TextureRect" parent="ITLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_right = 12.0
+margin_bottom = 5.0
+texture = ExtResource( 1 )
+script = ExtResource( 9 )
+
+[node name="Light3" type="TextureRect" parent="ITLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_left = 15.0
+margin_right = 27.0
+margin_bottom = 5.0
+texture = ExtResource( 1 )
+script = ExtResource( 9 )
+
+[node name="Light2" type="TextureRect" parent="ITLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_left = 30.0
+margin_right = 42.0
+margin_bottom = 5.0
+texture = ExtResource( 1 )
+script = ExtResource( 9 )
+
+[node name="Light1" type="TextureRect" parent="ITLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_left = 45.0
+margin_right = 57.0
+margin_bottom = 5.0
+texture = ExtResource( 1 )
+script = ExtResource( 9 )
+[connection signal="button_down" from="." to="." method="_on_ITButton_button_down"]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/puzzle/gui/ComponentButton.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/PuzzleGUI/Nr.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ui/components_panel/not_gate_button_idle_pressed.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/components_panel/not_gate_button_idle_hovered.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/components_panel/not_gate_button_idle.png" type="Texture" id=5]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=6]
+
+[node name="ComponentContainer" type="VBoxContainer"]
+material = ExtResource( 6 )
+margin_right = 22.0
+margin_bottom = 31.0
+custom_constants/separation = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LEDButton" type="TextureButton" parent="."]
+use_parent_material = true
+margin_right = 22.0
+margin_bottom = 22.0
+focus_mode = 1
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="NrMargin" type="MarginContainer" parent="."]
+use_parent_material = true
+margin_top = 22.0
+margin_right = 17.0
+margin_bottom = 31.0
+size_flags_horizontal = 0
+custom_constants/margin_right = 0
+custom_constants/margin_left = 3
+
+[node name="NrCenter" type="CenterContainer" parent="NrMargin"]
+use_parent_material = true
+margin_left = 3.0
+margin_right = 17.0
+margin_bottom = 9.0
+
+[node name="Nr" parent="NrMargin/NrCenter" instance=ExtResource( 2 )]
+use_parent_material = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 14.0
+margin_bottom = 9.0
+use_space_for_decimal_zero = true
+hide_decimal_zero = true
+[connection signal="pressed" from="LEDButton" to="." method="_on_LEDButton_pressed"]

@@ -1,0 +1,188 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/PuzzleGUI/Nr.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ui/io_panels/mask_hoverd_2x4.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/io_panels/mask_empty_2x4.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/io_panels/mask_selected_2x4.png" type="Texture" id=5]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=6]
+[ext_resource path="res://src/puzzle/gui/IOPanel/OTButton.gd" type="Script" id=7]
+[ext_resource path="res://src/puzzle/gui/IOPanel/OutputLight.gd" type="Script" id=8]
+[ext_resource path="res://src/puzzle/gui/IOPanel/OutputLightLeft.gd" type="Script" id=9]
+[ext_resource path="res://assets/ui/io_panels/required_out_light_green.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/io_panels/out_light_black.png" type="Texture" id=11]
+[ext_resource path="res://src/puzzle/gui/IOPanel/OutputLightRight.gd" type="Script" id=12]
+
+
+[node name="OTButton" type="TextureButton"]
+material = ExtResource( 6 )
+margin_right = 77.0
+margin_bottom = 9.0
+focus_mode = 1
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+stretch_mode = 4
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="OTLine" type="HBoxContainer" parent="."]
+use_parent_material = true
+margin_right = 76.0
+margin_bottom = 9.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Nr" parent="OTLine" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 14.0
+margin_bottom = 9.0
+use_space_for_decimal_zero = true
+
+[node name="LightsMargin" type="CenterContainer" parent="OTLine"]
+use_parent_material = true
+margin_left = 19.0
+margin_right = 76.0
+margin_bottom = 9.0
+mouse_filter = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Lights" type="HBoxContainer" parent="OTLine/LightsMargin"]
+use_parent_material = true
+margin_top = 1.0
+margin_right = 57.0
+margin_bottom = 8.0
+custom_constants/separation = 3
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Light4" type="HBoxContainer" parent="OTLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_right = 12.0
+margin_bottom = 7.0
+custom_constants/separation = 0
+script = ExtResource( 8 )
+
+[node name="Left" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light4"]
+use_parent_material = true
+margin_right = 5.0
+margin_bottom = 7.0
+texture = ExtResource( 11 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Right" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light4"]
+use_parent_material = true
+margin_left = 5.0
+margin_right = 12.0
+margin_bottom = 7.0
+texture = ExtResource( 10 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Light3" type="HBoxContainer" parent="OTLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_left = 15.0
+margin_right = 27.0
+margin_bottom = 7.0
+custom_constants/separation = 0
+script = ExtResource( 8 )
+
+[node name="Left" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light3"]
+use_parent_material = true
+margin_right = 5.0
+margin_bottom = 7.0
+texture = ExtResource( 11 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Right" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light3"]
+use_parent_material = true
+margin_left = 5.0
+margin_right = 12.0
+margin_bottom = 7.0
+texture = ExtResource( 10 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Light2" type="HBoxContainer" parent="OTLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_left = 30.0
+margin_right = 42.0
+margin_bottom = 7.0
+custom_constants/separation = 0
+script = ExtResource( 8 )
+
+[node name="Left" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light2"]
+use_parent_material = true
+margin_right = 5.0
+margin_bottom = 7.0
+texture = ExtResource( 11 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Right" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light2"]
+use_parent_material = true
+margin_left = 5.0
+margin_right = 12.0
+margin_bottom = 7.0
+texture = ExtResource( 10 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Light1" type="HBoxContainer" parent="OTLine/LightsMargin/Lights"]
+use_parent_material = true
+margin_left = 45.0
+margin_right = 57.0
+margin_bottom = 7.0
+custom_constants/separation = 0
+script = ExtResource( 8 )
+
+[node name="Left" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light1"]
+use_parent_material = true
+margin_right = 5.0
+margin_bottom = 7.0
+texture = ExtResource( 11 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Right" type="TextureRect" parent="OTLine/LightsMargin/Lights/Light1"]
+use_parent_material = true
+margin_left = 5.0
+margin_right = 12.0
+margin_bottom = 7.0
+texture = ExtResource( 10 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+[connection signal="button_down" from="." to="." method="_on_OTButton_button_down"]

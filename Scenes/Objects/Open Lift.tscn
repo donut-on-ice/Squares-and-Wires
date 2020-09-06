@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=1]
+[ext_resource path="res://assets/world/lift_open.png" type="Texture" id=2]
+[ext_resource path="res://src/world/Statics/OpenLift.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16, 21 )
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Hovered"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/Hovered/node = SubResource( 2 )
+states/Hovered/position = Vector2( 506, 99 )
+states/Idle/node = SubResource( 3 )
+states/Idle/position = Vector2( 231, 99 )
+transitions = [ "Idle", "Hovered", SubResource( 4 ), "Hovered", "Idle", SubResource( 5 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="OpenLift" type="Sprite"]
+material = ExtResource( 1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -16 )
+vframes = 2
+script = ExtResource( 3 )
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2( 0, -5 )
+shape = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hovered = SubResource( 9 )
+anims/Idle = SubResource( 10 )

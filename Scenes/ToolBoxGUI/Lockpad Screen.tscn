@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/world/Lockpad/LSText.gd" type="Script" id=5]
+[ext_resource path="res://src/world/Lockpad/LockpadScreen.gd" type="Script" id=6]
+
+[node name="Screen" type="Control"]
+margin_right = 126.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 126, 49 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Display Contour" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -63.0
+margin_right = 63.0
+margin_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 126, 49 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color( 0.360784, 0.505882, 0.741176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Display Margin" type="MarginContainer" parent="Display Contour"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.90735e-06
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Display Screen" type="ColorRect" parent="Display Contour/Display Margin"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 124.0
+margin_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 122, 45 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color( 0.109804, 0.0784314, 0.321569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen Margin" type="MarginContainer" parent="Display Contour/Display Margin/Display Screen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 1
+custom_constants/margin_top = 1
+custom_constants/margin_left = 1
+custom_constants/margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen Center" type="CenterContainer" parent="Display Contour/Display Margin/Display Screen/Screen Margin"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 121.0
+margin_bottom = 44.0
+
+[node name="Text" type="VBoxContainer" parent="Display Contour/Display Margin/Display Screen/Screen Margin/Screen Center"]
+margin_left = 60.0
+margin_top = 21.0
+margin_right = 60.0
+margin_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,220 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://assets/ui/map/info_icon_highlighted.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/ToolBoxGUI/Tool Box Lockpad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/PuzzleGUI/Puzzle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/InventoryGUI/InventoryGUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/MenuGUI/Menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/PuzzleGUI/PuzzleGUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/MapGUI/MapGUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/ui/upgrade_screen/UpgradeScreenGUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Globals/MasterNode.gd" type="Script" id=9]
+[ext_resource path="res://src/Menu/MenuCamera.gd" type="Script" id=10]
+[ext_resource path="res://assets/ui/map/info_icon.png" type="Texture" id=11]
+[ext_resource path="res://src/world/GUI/InfoButton.gd" type="Script" id=12]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=14]
+[ext_resource path="res://src/world/GameWorld2D.gd" type="Script" id=15]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Fade In"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Fade Out"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Invisible"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Visible"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+"states/Fade In/node" = SubResource( 1 )
+"states/Fade In/position" = Vector2( 277, 193 )
+"states/Fade Out/node" = SubResource( 2 )
+"states/Fade Out/position" = Vector2( 442, 106 )
+states/Invisible/node = SubResource( 3 )
+states/Invisible/position = Vector2( 442, 193 )
+states/Visible/node = SubResource( 4 )
+states/Visible/position = Vector2( 277, 106 )
+transitions = [ "Fade In", "Visible", SubResource( 5 ), "Fade Out", "Invisible", SubResource( 6 ), "Visible", "Fade Out", SubResource( 7 ), "Invisible", "Fade In", SubResource( 8 ) ]
+start_node = "Invisible"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeLayer/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0313726, 0.0901961, 1 ), Color( 0.0470588, 0.0313726, 0.0901961, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeLayer/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0313726, 0.0901961, 0 ), Color( 0.0470588, 0.0313726, 0.0901961, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Invisible"
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeLayer/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0313726, 0.0901961, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Visible"
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeLayer/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0313726, 0.0901961, 0 ) ]
+}
+
+[node name="Master" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.0470588, 0.0313726, 0.0901961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameWorld" type="Node2D" parent="."]
+script = ExtResource( 15 )
+
+[node name="Puzzle" parent="GameWorld" instance=ExtResource( 3 )]
+visible = false
+
+[node name="MenuCamera" type="Camera2D" parent="GameWorld"]
+anchor_mode = 0
+current = true
+script = ExtResource( 10 )
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="MenuGUI" parent="GUILayer" instance=ExtResource( 5 )]
+visible = false
+mouse_filter = 2
+
+[node name="InventoryGUI" parent="GUILayer" instance=ExtResource( 4 )]
+visible = false
+
+[node name="MapGUI" parent="GUILayer" instance=ExtResource( 7 )]
+visible = false
+margin_right = 42.0
+margin_bottom = 66.0
+
+[node name="UpgradeScreenGUI" parent="GUILayer" instance=ExtResource( 8 )]
+visible = false
+chosen_answer_color = Color( 1, 1, 1, 1 )
+answers_characters_shown = 0
+
+[node name="LockpadGUI" parent="GUILayer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="PuzzleGUI" parent="GUILayer" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Info" type="Control" parent="GUILayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="TextureButton" parent="GUILayer/Info"]
+visible = false
+material = ExtResource( 14 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -52.0
+margin_top = 4.0
+margin_right = -36.0
+margin_bottom = 20.0
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+
+[node name="Fade" type="ColorRect" parent="FadeLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.0470588, 0.0313726, 0.0901961, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Fade In" = SubResource( 11 )
+"anims/Fade Out" = SubResource( 12 )
+anims/Invisible = SubResource( 13 )
+anims/Visible = SubResource( 14 )
+[connection signal="mouse_entered" from="GUILayer/Info/Button" to="GUILayer/Info/Button" method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="GUILayer/Info/Button" to="GUILayer/Info/Button" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="GUILayer/Info/Button" to="GUILayer/Info/Button" method="_on_Button_pressed"]

@@ -1,0 +1,850 @@
+[gd_scene load_steps=51 format=2]
+
+[ext_resource path="res://assets/ui/upgrad_table/upgrade_screen_top_bar.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/upgrad_table/upgrade_screen_top_tube.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/upgrad_table/stop_button_hovered.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/upgrad_table/stop_button_idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/upgrad_table/stop_button_pressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/upgrad_table/upgrade_screen_top.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/upgrad_table/start_button_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/upgrad_table/upgrade_screen_top_marks.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/upgrad_table/start_button_hovered.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/upgrad_table/start_button_idle.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/upgrade_screen/AnswerTextButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=12]
+[ext_resource path="res://src/Upgrade/UpgradeScreenGUI.gd" type="Script" id=14]
+[ext_resource path="res://assets/ui/inventory/stats_background.png" type="Texture" id=16]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Abort"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Accept"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Blink"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Bring Down"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Bring Up"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Error"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Hidden"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Reject"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Shown"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/Abort/node = SubResource( 1 )
+states/Abort/position = Vector2( 442.563, 185 )
+states/Accept/node = SubResource( 2 )
+states/Accept/position = Vector2( 442.563, 43 )
+states/Blink/node = SubResource( 3 )
+states/Blink/position = Vector2( 792.563, 115 )
+"states/Bring Down/node" = SubResource( 4 )
+"states/Bring Down/position" = Vector2( 618.563, 115 )
+"states/Bring Up/node" = SubResource( 5 )
+"states/Bring Up/position" = Vector2( 284.563, -11 )
+states/Error/node = SubResource( 6 )
+states/Error/position = Vector2( 284.563, 202 )
+states/Hidden/node = SubResource( 7 )
+states/Hidden/position = Vector2( 284.563, 115 )
+states/Reject/node = SubResource( 8 )
+states/Reject/position = Vector2( 442.563, 115 )
+states/Shown/node = SubResource( 9 )
+states/Shown/position = Vector2( 792.563, -11 )
+states/Start/node = SubResource( 10 )
+states/Start/position = Vector2( 144.563, 115 )
+transitions = [ "Start", "Hidden", SubResource( 11 ), "Start", "Error", SubResource( 12 ), "Hidden", "Bring Up", SubResource( 13 ), "Hidden", "Error", SubResource( 14 ), "Bring Up", "Shown", SubResource( 15 ), "Shown", "Blink", SubResource( 16 ), "Shown", "Bring Down", SubResource( 17 ), "Blink", "Bring Down", SubResource( 18 ), "Bring Down", "Accept", SubResource( 19 ), "Bring Down", "Reject", SubResource( 20 ), "Bring Down", "Abort", SubResource( 21 ), "Accept", "Hidden", SubResource( 22 ), "Reject", "Hidden", SubResource( 23 ), "Abort", "Hidden", SubResource( 24 ) ]
+start_node = "Start"
+end_node = "Error"
+graph_offset = Vector2( 68.563, -34.7205 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
+
+[sub_resource type="Animation" id=27]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Top/Upgrade:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2, -24 ), Vector2( -29, -24 ), Vector2( -34, -20 ), Vector2( -34, 11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Top/Case/Start:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Top/Case/Start:pressed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_up_null"
+} ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Top/Upgrade:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2, -24 ), Vector2( 33, -24 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_next_up"
+} ]
+}
+
+[sub_resource type="Animation" id=29]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:chosen_answer_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 0.933333, 0.513726, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.933333, 0.513726, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.933333, 0.513726, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:answers_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Top/Case/Stop:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=30]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:question_modulation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:answers_characters_shown")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 32, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Top/Case/Start:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Top/Case/Stop:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:answers_disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=31]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:question_modulation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:answers_characters_shown")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 0, 32 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Top/Case/Start:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Top/Upgrade:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -34, 11.0001 ), Vector2( -34, -20 ), Vector2( -29, -24 ), Vector2( -2, -24 ), Vector2( -2, -24 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Top/Case/Stop:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Top/Case/Stop:pressed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:answers_disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=32]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Top/Case/Stop:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Top/Case/Start:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Top/Center/Margin/Question:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+
+[sub_resource type="Animation" id=34]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Top/Upgrade:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2, -24 ), Vector2( -2, 11 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_next_up"
+} ]
+}
+
+[sub_resource type="Animation" id=35]
+
+[sub_resource type="Animation" id=36]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Top/Case/Stop:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Top/Case/Start:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Top/Case/Start:pressed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Top/Upgrade:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -34, 11.0001 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:question_modulation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="UpgradeScreenGUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 1105, 404 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+question_modulation = Color( 1, 1, 1, 0 )
+chosen_answer_color = Color( 1, 0.933333, 0.513726, 1 )
+answers_characters_shown = 22
+
+[node name="Fade" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0470588, 0.0313726, 0.0901961, 0.498039 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -37.0
+margin_bottom = 132.0
+rect_scale = Vector2( 2, 2 )
+color = Color( 0.25098, 0.286275, 0.45098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Answers" type="GridContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -64.0
+margin_right = 40.0
+margin_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/vseparation = 32
+custom_constants/hseparation = 32
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="answer 1" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_right = 24.0
+margin_bottom = 8.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+percent_visible = 1.0
+index = 1
+
+[node name="answer 5" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_left = 56.0
+margin_right = 80.0
+margin_bottom = 8.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "5> "
+percent_visible = 1.0
+index = 5
+
+[node name="answer 2" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_top = 40.0
+margin_right = 24.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "2> "
+percent_visible = 1.0
+index = 2
+
+[node name="answer 6" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_left = 56.0
+margin_top = 40.0
+margin_right = 80.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "6> "
+percent_visible = 1.0
+index = 6
+
+[node name="answer 3" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_top = 80.0
+margin_right = 24.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "3> "
+percent_visible = 1.0
+index = 3
+
+[node name="answer 7" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_left = 56.0
+margin_top = 80.0
+margin_right = 80.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "7> "
+percent_visible = 1.0
+index = 7
+
+[node name="answer 4" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_top = 120.0
+margin_right = 24.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "4> "
+percent_visible = 1.0
+index = 4
+
+[node name="answer 8" parent="Background/Answers" instance=ExtResource( 11 )]
+margin_left = 56.0
+margin_top = 120.0
+margin_right = 80.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+text = "8> "
+percent_visible = 1.0
+index = 8
+
+[node name="Bar" type="TextureRect" parent="."]
+material = ExtResource( 12 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -54.9999
+margin_right = -171.0
+margin_bottom = -48.9999
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -108.0
+margin_bottom = -108.0
+rect_scale = Vector2( 3, 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="CenterContainer" parent="Top"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -171.0
+margin_top = -64.0
+margin_right = 170.0
+margin_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Top/Center"]
+margin_left = 163.0
+margin_top = 12.0
+margin_right = 177.0
+margin_bottom = 20.0
+custom_constants/margin_left = 14
+
+[node name="Question" type="Label" parent="Top/Center/Margin"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 14.0
+margin_right = 14.0
+margin_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="NinePatchRect" parent="Top/Center/Margin/Question"]
+show_behind_parent = true
+material = ExtResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -7.0
+margin_top = -7.0
+margin_right = 6.0
+margin_bottom = 3.0
+texture = ExtResource( 16 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Conveyer" type="TextureRect" parent="Top"]
+material = ExtResource( 12 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.0
+margin_top = -30.0
+margin_right = 61.0
+margin_bottom = 30.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Upgrade" type="TextureRect" parent="Top"]
+material = ExtResource( 12 )
+margin_left = -34.0
+margin_top = 11.0001
+margin_right = -18.0
+margin_bottom = 27.0001
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarkUps" type="TextureRect" parent="Top"]
+material = ExtResource( 12 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.0
+margin_top = -30.0
+margin_right = 61.0
+margin_bottom = 30.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Case" type="TextureRect" parent="Top"]
+material = ExtResource( 12 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.0
+margin_top = -30.0
+margin_right = 61.0
+margin_bottom = 30.0
+mouse_filter = 2
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stop" type="TextureButton" parent="Top/Case"]
+material = ExtResource( 12 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = 11.0
+margin_right = -15.0
+margin_bottom = 25.0
+hint_tooltip = "stop the session"
+disabled = true
+toggle_mode = true
+pressed = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="TextureButton" parent="Top/Case"]
+material = ExtResource( 12 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -14.0
+margin_top = 11.0
+margin_right = 27.0
+margin_bottom = 25.0
+hint_tooltip = "start question session"
+toggle_mode = true
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 9 )
+texture_disabled = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 25 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 26 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Abort = SubResource( 27 )
+anims/Accept = SubResource( 28 )
+anims/Blink = SubResource( 29 )
+"anims/Bring Down" = SubResource( 30 )
+"anims/Bring Up" = SubResource( 31 )
+anims/Error = SubResource( 32 )
+anims/Hidden = SubResource( 33 )
+anims/Reject = SubResource( 34 )
+anims/Shown = SubResource( 35 )
+anims/Start = SubResource( 36 )
+[connection signal="button_down" from="Top/Case/Stop" to="." method="_on_Stop_button_down"]
+[connection signal="button_down" from="Top/Case/Start" to="." method="_on_Start_button_down"]

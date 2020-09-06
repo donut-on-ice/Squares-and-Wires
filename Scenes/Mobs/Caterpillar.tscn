@@ -1,0 +1,204 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://src/world/Mobs/Caterpillar.gd" type="Script" id=1]
+[ext_resource path="res://assets/mobs/Bug/Bug_Head_Sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/Resources/AreaWithTargets.gd" type="Script" id=3]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=4]
+[ext_resource path="res://src/world/Mobs/HitArea.gd" type="Script" id=5]
+[ext_resource path="res://src/Resources/Attack.gd" type="Script" id=6]
+[ext_resource path="res://src/Resources/MobStats.gd" type="Script" id=7]
+[ext_resource path="res://src/world/Mobs/AreaOfTarget.gd" type="Script" id=8]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 7 )
+max_health = 1
+health = 1
+armor = 0
+acceleration = 80.0
+max_speed = 50.0
+mass = 10.0
+orientation = Vector2( 0, 1 )
+near_zero = 5.0
+sight_range = 2
+mob_type = 1
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 1.5
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 1.5
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 6 )
+cooldown = 5.0
+active_cooldown = 0.0
+tick_time = 0.0
+targeted = true
+one_shot = true
+always_on = false
+penetration = 0
+damage = 0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 2.5
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 32.0
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Orient South"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Orient North"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Orient West"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Orient Est"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=12]
+blend_point_0/node = SubResource( 8 )
+blend_point_0/pos = Vector2( 0, 1.1 )
+blend_point_1/node = SubResource( 9 )
+blend_point_1/pos = Vector2( 0, -1.1 )
+blend_point_2/node = SubResource( 10 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 11 )
+blend_point_3/pos = Vector2( 1, 0 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtAreaHead/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=14]
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtAreaHead/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=15]
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtAreaHead/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=16]
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtAreaHead/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="Caterpillar" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 2147484680
+script = ExtResource( 1 )
+initial_stats = SubResource( 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 2 )
+
+[node name="HurtAreaHead" type="Area2D" parent="."]
+input_pickable = false
+collision_layer = 256
+collision_mask = 0
+script = ExtResource( 8 )
+
+[node name="Head" type="Sprite" parent="HurtAreaHead"]
+material = ExtResource( 4 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+hframes = 4
+frame = 1
+
+[node name="Shape" type="CollisionShape2D" parent="HurtAreaHead"]
+visible = false
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 3 )
+
+[node name="HitArea" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 5 )
+ability = SubResource( 4 )
+
+[node name="Shape" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource( 5 )
+
+[node name="Agro" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 3 )
+
+[node name="Shape" type="CollisionShape2D" parent="Agro"]
+shape = SubResource( 6 )
+
+[node name="Fear" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 2147483648
+collision_mask = 192
+script = ExtResource( 3 )
+
+[node name="Shape" type="CollisionShape2D" parent="Fear"]
+shape = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/blend_position = Vector2( 0.110439, 0.147423 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Orient Est" = SubResource( 13 )
+"anims/Orient North" = SubResource( 14 )
+"anims/Orient South" = SubResource( 15 )
+"anims/Orient West" = SubResource( 16 )

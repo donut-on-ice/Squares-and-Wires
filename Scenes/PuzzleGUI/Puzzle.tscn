@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Holders/CameraHolder.gd" type="Script" id=4]
+[ext_resource path="res://src/puzzle/PuzzleOverview.gd" type="Script" id=5]
+
+[node name="Puzzle" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="PuzzleCamera" type="Camera2D" parent="."]
+light_mask = 0
+z_as_relative = false
+anchor_mode = 0
+current = true
+editor_draw_drag_margin = true
+script = ExtResource( 4 )

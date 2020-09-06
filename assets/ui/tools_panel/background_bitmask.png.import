@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/background_bitmask.png-f680e9b6790de311c1b89487a6cc5874.res"
+
+[deps]
+
+source_file="res://assets/ui/tools_panel/background_bitmask.png"
+dest_files=[ "res://.import/background_bitmask.png-f680e9b6790de311c1b89487a6cc5874.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -1,0 +1,603 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://assets/ui/map/inventory_icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/map/inventory_icon_hovered.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/map/inventory_icon_pressed.png" type="Texture" id=3]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=4]
+[ext_resource path="res://src/world/GUI/InventoryUpdatePopUpManager.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/map/battery_icon_start.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/map/battery_icon_middle_empty.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/map/battery_icon_end.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/map/player_icon.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/map/battery_icon_middle_full.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/map/robo_icon.png" type="Texture" id=11]
+[ext_resource path="res://src/world/GUI/InventoryButton.gd" type="Script" id=12]
+[ext_resource path="res://src/world/GUI/MapGUI.gd" type="Script" id=14]
+[ext_resource path="res://src/world/GUI/HealthBarMiddle.gd" type="Script" id=15]
+[ext_resource path="res://src/world/GUI/PlayerStats.gd" type="Script" id=16]
+[ext_resource path="res://src/world/GUI/RoboStats.gd" type="Script" id=17]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Blink"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoboIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_min_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 38, 16 ), Vector2( 38, 16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:moving")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fade In"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoboIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_min_size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 38, 0 ), Vector2( 38, 16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:moving")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Fade Out"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoboIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_min_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.6 ),
+"transitions": PoolRealArray( 4, 4 ),
+"update": 0,
+"values": [ Vector2( 38, 16 ), Vector2( 38, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:moving")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Invisible"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoboIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_min_size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 38, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:moving")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Visible"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoboIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_min_size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 38, 16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:moving")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Blink"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Fade In"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Fade Out"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Invisible"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Visible"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/Blink/node = SubResource( 6 )
+states/Blink/position = Vector2( 291, 106 )
+"states/Fade In/node" = SubResource( 7 )
+"states/Fade In/position" = Vector2( 112, 187 )
+"states/Fade Out/node" = SubResource( 8 )
+"states/Fade Out/position" = Vector2( 479, 106 )
+states/Invisible/node = SubResource( 9 )
+states/Invisible/position = Vector2( 479, 187 )
+states/Visible/node = SubResource( 10 )
+states/Visible/position = Vector2( 112, 106 )
+transitions = [ "Visible", "Blink", SubResource( 11 ), "Fade Out", "Invisible", SubResource( 12 ), "Blink", "Fade Out", SubResource( 13 ), "Invisible", "Fade In", SubResource( 14 ), "Fade In", "Visible", SubResource( 15 ), "Blink", "Visible", SubResource( 16 ) ]
+start_node = "Visible"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[node name="MapGUI" type="MarginContainer"]
+material = ExtResource( 4 )
+use_parent_material = true
+margin_right = 38.0
+margin_bottom = 2.0
+rect_scale = Vector2( 3, 3 )
+mouse_filter = 2
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="VBoxContainer" parent="."]
+use_parent_material = true
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 40.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerStats" type="HBoxContainer" parent="Stats"]
+use_parent_material = true
+margin_right = 38.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 38, 16 )
+mouse_filter = 2
+custom_constants/separation = 3
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerIcon" type="TextureRect" parent="Stats/PlayerStats"]
+use_parent_material = true
+margin_right = 16.0
+margin_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Stats/PlayerStats"]
+use_parent_material = true
+margin_left = 19.0
+margin_right = 35.0
+margin_bottom = 16.0
+mouse_filter = 2
+
+[node name="Hp" type="HBoxContainer" parent="Stats/PlayerStats/CenterContainer"]
+use_parent_material = true
+margin_top = 3.0
+margin_right = 16.0
+margin_bottom = 13.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Begining" type="TextureRect" parent="Stats/PlayerStats/CenterContainer/Hp"]
+use_parent_material = true
+margin_right = 3.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 6 )
+
+[node name="Middle" type="HBoxContainer" parent="Stats/PlayerStats/CenterContainer/Hp"]
+use_parent_material = true
+margin_left = 3.0
+margin_right = 12.0
+margin_bottom = 10.0
+mouse_filter = 2
+custom_constants/separation = 0
+script = ExtResource( 15 )
+
+[node name="1" type="TextureRect" parent="Stats/PlayerStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_right = 3.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="TextureRect" parent="Stats/PlayerStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_left = 3.0
+margin_right = 6.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="TextureRect" parent="Stats/PlayerStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_left = 6.0
+margin_right = 9.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End" type="TextureRect" parent="Stats/PlayerStats/CenterContainer/Hp"]
+use_parent_material = true
+margin_left = 12.0
+margin_right = 16.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoboStats" type="HBoxContainer" parent="Stats"]
+use_parent_material = true
+margin_top = 18.0
+margin_right = 38.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 38, 16 )
+mouse_filter = 2
+custom_constants/separation = 3
+script = ExtResource( 17 )
+
+[node name="RoboIcon" type="TextureRect" parent="Stats/RoboStats"]
+use_parent_material = true
+margin_right = 16.0
+margin_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource( 11 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Stats/RoboStats"]
+use_parent_material = true
+margin_left = 19.0
+margin_right = 38.0
+margin_bottom = 16.0
+mouse_filter = 2
+
+[node name="Hp" type="HBoxContainer" parent="Stats/RoboStats/CenterContainer"]
+use_parent_material = true
+margin_top = 3.0
+margin_right = 19.0
+margin_bottom = 13.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Begining" type="TextureRect" parent="Stats/RoboStats/CenterContainer/Hp"]
+use_parent_material = true
+margin_right = 3.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 6 )
+
+[node name="Middle" type="HBoxContainer" parent="Stats/RoboStats/CenterContainer/Hp"]
+use_parent_material = true
+margin_left = 3.0
+margin_right = 15.0
+margin_bottom = 10.0
+mouse_filter = 2
+custom_constants/separation = 0
+script = ExtResource( 15 )
+
+[node name="1" type="TextureRect" parent="Stats/RoboStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_right = 3.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="TextureRect" parent="Stats/RoboStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_left = 3.0
+margin_right = 6.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="TextureRect" parent="Stats/RoboStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_left = 6.0
+margin_right = 9.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="TextureRect" parent="Stats/RoboStats/CenterContainer/Hp/Middle"]
+use_parent_material = true
+margin_left = 9.0
+margin_right = 12.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End" type="TextureRect" parent="Stats/RoboStats/CenterContainer/Hp"]
+use_parent_material = true
+margin_left = 15.0
+margin_right = 19.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Stats/RoboStats"]
+anims/Blink = SubResource( 1 )
+"anims/Fade In" = SubResource( 2 )
+"anims/Fade Out" = SubResource( 3 )
+anims/Invisible = SubResource( 4 )
+anims/Visible = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Stats/RoboStats"]
+tree_root = SubResource( 17 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 18 )
+
+[node name="Inventory" type="MarginContainer" parent="Stats"]
+use_parent_material = true
+margin_top = 36.0
+margin_right = 38.0
+margin_bottom = 60.0
+mouse_filter = 2
+custom_constants/margin_left = 4
+
+[node name="InventoryButton" type="TextureButton" parent="Stats/Inventory"]
+use_parent_material = true
+margin_left = 4.0
+margin_right = 28.0
+margin_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryUpdates" type="VBoxContainer" parent="Stats"]
+use_parent_material = true
+margin_top = 62.0
+margin_right = 38.0
+margin_bottom = 62.0
+mouse_filter = 2
+custom_constants/separation = 2
+script = ExtResource( 5 )
+[connection signal="mouse_entered" from="Stats/Inventory/InventoryButton" to="." method="_on_InventoryButton_mouse_entered"]
+[connection signal="mouse_exited" from="Stats/Inventory/InventoryButton" to="." method="_on_InventoryButton_mouse_exited"]
+[connection signal="pressed" from="Stats/Inventory/InventoryButton" to="Stats/Inventory/InventoryButton" method="_on_InventoryButton_pressed"]

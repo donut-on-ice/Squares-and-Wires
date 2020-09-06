@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/button_big_right_bitmask.png-36d16c94d09525f538e9be142300462d.res"
+
+[deps]
+
+source_file="res://assets/ui/io_panels/button_big_right_bitmask.png"
+dest_files=[ "res://.import/button_big_right_bitmask.png-36d16c94d09525f538e9be142300462d.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

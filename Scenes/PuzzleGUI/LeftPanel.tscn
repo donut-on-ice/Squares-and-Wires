@@ -1,0 +1,452 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://assets/ui/io_panels/table_4x16.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_top.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_bottom.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/io_panels/separator_inputs.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/PuzzleGUI/Nr.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/ui/io_panels/button_big_right_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/PuzzleGUI/InputButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=8]
+[ext_resource path="res://Scenes/PuzzleGUI/ITButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/ui/io_panels/button_big_left_hovered.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/io_panels/button_big_right.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_index.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/io_panels/button_big_left_pressed.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/labels/i3.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/labels/i2.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/labels/i4.png" type="Texture" id=16]
+[ext_resource path="res://assets/ui/labels/i1.png" type="Texture" id=17]
+[ext_resource path="res://assets/ui/io_panels/button_big_right_hovered.png" type="Texture" id=18]
+[ext_resource path="res://assets/ui/io_panels/button_big_left.png" type="Texture" id=19]
+[ext_resource path="res://src/puzzle/gui/IOPanel/LeftPanel.gd" type="Script" id=20]
+[ext_resource path="res://assets/ui/io_panels/button_big_lef_bitmask.png" type="BitMap" id=21]
+[ext_resource path="res://src/puzzle/gui/IOPanel/InputButtonSeparator.gd" type="Script" id=22]
+[ext_resource path="res://src/puzzle/gui/IOPanel/ITHeader.gd" type="Script" id=23]
+[ext_resource path="res://assets/ui/io_panels/button_big_right_bitmask.png" type="BitMap" id=24]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_bottom_bitmask.png" type="BitMap" id=25]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_top_bitmask.png" type="BitMap" id=26]
+[ext_resource path="res://src/puzzle/gui/SimpleShapes/BitMaskShape.gd" type="Script" id=27]
+[ext_resource path="res://assets/ui/io_panels/buttons_panel_index_bitmask.png" type="BitMap" id=28]
+
+
+[node name="LeftPanel" type="HBoxContainer"]
+material = ExtResource( 8 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -175.0
+margin_right = 101.0
+margin_bottom = -117.0
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 2
+custom_constants/separation = -9
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ITM" type="MarginContainer" parent="."]
+show_behind_parent = true
+use_parent_material = true
+margin_right = 105.0
+margin_bottom = 175.0
+
+[node name="TBackground" type="TextureRect" parent="ITM"]
+material = ExtResource( 8 )
+margin_right = 105.0
+margin_bottom = 175.0
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TMargin" type="MarginContainer" parent="ITM/TBackground"]
+use_parent_material = true
+margin_right = 91.0
+margin_bottom = 173.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 2
+custom_constants/margin_left = 14
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IT" type="VBoxContainer" parent="ITM/TBackground/TMargin"]
+use_parent_material = true
+margin_left = 14.0
+margin_top = 2.0
+margin_right = 91.0
+margin_bottom = 173.0
+mouse_filter = 0
+custom_constants/separation = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="HBoxContainer" parent="ITM/TBackground/TMargin/IT"]
+use_parent_material = true
+margin_right = 77.0
+margin_bottom = 9.0
+mouse_filter = 0
+custom_constants/separation = 4
+script = ExtResource( 23 )
+
+[node name="HiddenNr" parent="ITM/TBackground/TMargin/IT/Header" instance=ExtResource( 5 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 14.0
+margin_bottom = 9.0
+use_space_for_decimal_zero = true
+is_just_space = true
+
+[node name="Labels" type="HBoxContainer" parent="ITM/TBackground/TMargin/IT/Header"]
+use_parent_material = true
+margin_left = 18.0
+margin_right = 76.0
+margin_bottom = 9.0
+custom_constants/separation = 2
+
+[node name="I4" type="TextureRect" parent="ITM/TBackground/TMargin/IT/Header/Labels"]
+use_parent_material = true
+margin_right = 13.0
+margin_bottom = 9.0
+texture = ExtResource( 16 )
+
+[node name="I3" type="TextureRect" parent="ITM/TBackground/TMargin/IT/Header/Labels"]
+use_parent_material = true
+margin_left = 15.0
+margin_right = 28.0
+margin_bottom = 9.0
+texture = ExtResource( 14 )
+
+[node name="I2" type="TextureRect" parent="ITM/TBackground/TMargin/IT/Header/Labels"]
+use_parent_material = true
+margin_left = 30.0
+margin_right = 43.0
+margin_bottom = 9.0
+texture = ExtResource( 15 )
+
+[node name="I1" type="TextureRect" parent="ITM/TBackground/TMargin/IT/Header/Labels"]
+use_parent_material = true
+margin_left = 45.0
+margin_right = 58.0
+margin_bottom = 9.0
+texture = ExtResource( 17 )
+
+[node name="ITBody" type="VBoxContainer" parent="ITM/TBackground/TMargin/IT"]
+use_parent_material = true
+margin_top = 12.0
+margin_right = 77.0
+margin_bottom = 171.0
+mouse_filter = 0
+custom_constants/separation = 1
+
+[node name="ITButton0" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_right = 77.0
+
+[node name="ITButton1" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 10.0
+margin_right = 77.0
+margin_bottom = 19.0
+index = 1
+
+[node name="ITButton2" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 20.0
+margin_right = 77.0
+margin_bottom = 29.0
+index = 2
+
+[node name="ITButton3" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 30.0
+margin_right = 77.0
+margin_bottom = 39.0
+index = 3
+
+[node name="ITButton4" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 40.0
+margin_right = 77.0
+margin_bottom = 49.0
+index = 4
+
+[node name="ITButton5" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 50.0
+margin_right = 77.0
+margin_bottom = 59.0
+index = 5
+
+[node name="ITButton6" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 60.0
+margin_right = 77.0
+margin_bottom = 69.0
+index = 6
+
+[node name="ITButton7" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 70.0
+margin_right = 77.0
+margin_bottom = 79.0
+index = 7
+
+[node name="ITButton8" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 80.0
+margin_right = 77.0
+margin_bottom = 89.0
+index = 8
+
+[node name="ITButton9" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 90.0
+margin_right = 77.0
+margin_bottom = 99.0
+index = 9
+
+[node name="ITButton10" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 100.0
+margin_right = 77.0
+margin_bottom = 109.0
+index = 10
+
+[node name="ITButton11" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 110.0
+margin_right = 77.0
+margin_bottom = 119.0
+index = 11
+
+[node name="ITButton12" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 120.0
+margin_right = 77.0
+margin_bottom = 129.0
+index = 12
+
+[node name="ITButton13" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 130.0
+margin_right = 77.0
+margin_bottom = 139.0
+index = 13
+
+[node name="ITButton14" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 140.0
+margin_right = 77.0
+margin_bottom = 149.0
+index = 14
+
+[node name="ITButton15" parent="ITM/TBackground/TMargin/IT/ITBody" instance=ExtResource( 9 )]
+margin_top = 150.0
+margin_right = 77.0
+margin_bottom = 159.0
+index = 15
+
+[node name="IPMargin" type="MarginContainer" parent="."]
+use_parent_material = true
+margin_left = 96.0
+margin_right = 143.0
+margin_bottom = 175.0
+mouse_filter = 2
+custom_constants/margin_top = -16
+
+[node name="IP" type="VBoxContainer" parent="IPMargin"]
+use_parent_material = true
+margin_top = -16.0
+margin_right = 47.0
+margin_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterNr" type="HBoxContainer" parent="IPMargin/IP"]
+use_parent_material = true
+margin_right = 47.0
+margin_bottom = 10.0
+mouse_filter = 2
+custom_constants/separation = 0
+
+[node name="Left" type="MarginContainer" parent="IPMargin/IP/CenterNr"]
+margin_right = 8.0
+margin_bottom = 10.0
+mouse_filter = 2
+custom_constants/margin_left = 8
+
+[node name="LeftPadding" type="MarginContainer" parent="IPMargin/IP/CenterNr"]
+margin_left = 8.0
+margin_right = 15.0
+margin_bottom = 10.0
+mouse_filter = 2
+custom_constants/margin_left = 7
+
+[node name="NrBackground" type="TextureRect" parent="IPMargin/IP/CenterNr"]
+use_parent_material = true
+margin_left = 15.0
+margin_right = 32.0
+margin_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource( 12 )
+stretch_mode = 4
+script = ExtResource( 27 )
+bitmask = ExtResource( 28 )
+
+[node name="SelectedNr" parent="IPMargin/IP/CenterNr/NrBackground" instance=ExtResource( 5 )]
+hide_decimal_zero = true
+
+[node name="Panel" type="HBoxContainer" parent="IPMargin/IP"]
+use_parent_material = true
+margin_top = 10.0
+margin_right = 47.0
+margin_bottom = 153.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterITColapse" type="CenterContainer" parent="IPMargin/IP/Panel"]
+use_parent_material = true
+margin_right = 8.0
+margin_bottom = 143.0
+mouse_filter = 2
+
+[node name="ITColapse" type="TextureButton" parent="IPMargin/IP/Panel/CenterITColapse"]
+use_parent_material = true
+margin_top = 64.0
+margin_right = 8.0
+margin_bottom = 78.0
+grow_vertical = 0
+focus_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 10 )
+texture_click_mask = ExtResource( 21 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IP" type="VBoxContainer" parent="IPMargin/IP/Panel"]
+use_parent_material = true
+margin_left = 8.0
+margin_right = 39.0
+margin_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+size_flags_horizontal = 0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="TextureRect" parent="IPMargin/IP/Panel/IP"]
+material = ExtResource( 8 )
+margin_right = 31.0
+margin_bottom = 4.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+script = ExtResource( 27 )
+bitmask = ExtResource( 26 )
+
+[node name="IButton4" parent="IPMargin/IP/Panel/IP" instance=ExtResource( 7 )]
+margin_top = 4.0
+margin_right = 31.0
+margin_bottom = 31.0
+index = 4
+
+[node name="Line4" type="TextureRect" parent="IPMargin/IP/Panel/IP"]
+material = ExtResource( 8 )
+margin_top = 31.0
+margin_right = 31.0
+margin_bottom = 40.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+script = ExtResource( 22 )
+index = 4
+
+[node name="IButton3" parent="IPMargin/IP/Panel/IP" instance=ExtResource( 7 )]
+margin_top = 40.0
+margin_right = 31.0
+margin_bottom = 67.0
+mouse_filter = 0
+index = 3
+
+[node name="Line3" type="TextureRect" parent="IPMargin/IP/Panel/IP"]
+material = ExtResource( 8 )
+margin_top = 67.0
+margin_right = 31.0
+margin_bottom = 76.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+script = ExtResource( 22 )
+__meta__ = {
+"_editor_description_": ""
+}
+index = 3
+
+[node name="IButton2" parent="IPMargin/IP/Panel/IP" instance=ExtResource( 7 )]
+margin_top = 76.0
+margin_right = 31.0
+margin_bottom = 103.0
+index = 2
+
+[node name="Line2" type="TextureRect" parent="IPMargin/IP/Panel/IP"]
+material = ExtResource( 8 )
+margin_top = 103.0
+margin_right = 31.0
+margin_bottom = 112.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+script = ExtResource( 22 )
+
+[node name="IButton1" parent="IPMargin/IP/Panel/IP" instance=ExtResource( 7 )]
+margin_top = 112.0
+margin_right = 31.0
+margin_bottom = 139.0
+mouse_filter = 0
+
+[node name="Bottom" type="TextureRect" parent="IPMargin/IP/Panel/IP"]
+material = ExtResource( 8 )
+margin_top = 139.0
+margin_right = 31.0
+margin_bottom = 143.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+script = ExtResource( 27 )
+bitmask = ExtResource( 25 )
+
+[node name="CenterITExpand" type="CenterContainer" parent="IPMargin/IP/Panel"]
+use_parent_material = true
+margin_left = 39.0
+margin_right = 47.0
+margin_bottom = 143.0
+mouse_filter = 2
+
+[node name="ITExpand" type="TextureButton" parent="IPMargin/IP/Panel/CenterITExpand"]
+use_parent_material = true
+margin_top = 64.0
+margin_right = 8.0
+margin_bottom = 78.0
+focus_mode = 1
+size_flags_horizontal = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 18 )
+texture_click_mask = ExtResource( 24 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="IPMargin/IP/Panel/CenterITColapse/ITColapse" to="." method="_on_ITColapse_pressed"]
+[connection signal="pressed" from="IPMargin/IP/Panel/CenterITExpand/ITExpand" to="." method="_on_ITExpand_pressed"]
