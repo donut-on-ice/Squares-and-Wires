@@ -26,6 +26,10 @@ onready var Tiles := {
 
 
 #### MAIN METHODS ####
+
+func _ready():
+	pass
+
 #--# MAIN METHODS #--#
 
 

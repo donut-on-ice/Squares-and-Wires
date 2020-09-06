@@ -25,6 +25,10 @@ onready var path_node:PathMap = $Navigation2D/PathMap
 
 
 #### MAIN METHODS ####
+
+func _ready():
+	pass
+
 #--# MAIN METHODS #--#
 
 

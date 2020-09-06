@@ -578,7 +578,6 @@ margin_right = 24.0
 margin_bottom = 8.0
 custom_colors/font_color = Color( 0.635294, 1, 0.6, 1 )
 percent_visible = 1.0
-index = 1
 
 [node name="answer 5" parent="Background/Answers" instance=ExtResource( 11 )]
 margin_left = 56.0

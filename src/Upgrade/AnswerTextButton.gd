@@ -117,7 +117,7 @@ func is_idle() -> bool:
 func has_point(point:Vector2) -> bool:
 
 	var start := get_global_position()
-	var end:Vector2 = start + get_size() * get_scale()
+	var end:Vector2 = start + get_size() * 2
 	
 	return point.x > start.x and point.y > start.y \
 		and point.x < end.x and point.y < end.y

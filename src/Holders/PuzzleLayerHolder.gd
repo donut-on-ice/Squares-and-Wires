@@ -135,9 +135,6 @@ func _input(event:InputEvent):
 	if not debug:
 		return
 	
-	if event.scancode == KEY_N and not event.is_echo() and event.is_pressed():
-		print("connections count: ",_connection_holder.connections.size())
-	
 	if _connection_holder.connections.size() <= 0:
 		return
 	

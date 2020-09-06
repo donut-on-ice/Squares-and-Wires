@@ -109,10 +109,6 @@ func set_pause_all_process(n:Node, paused:bool):
 
 func set_view_case(vc:int):
 	
-	for i in Cases:
-		if Cases[i] == vc:
-			print(name + ".view_case is " + i)
-	
 	view_case = vc
 	
 	get_tree().call_group(Groups.PAUSABLES, 

@@ -168,8 +168,6 @@ func set_pressed_index(i:int):
 		Upgrades.push_front(current_upgrade)
 		
 	PlayerInventory.add_upgrade(current_upgrade)
-	
-	print(name + ".set_pressed_index(): in the end upgrade is ", Upgrades.size())
 
 
 ### updates ###
@@ -231,19 +229,15 @@ func on_view_case_change():
 	SceneManager.set_node_paused(self, paused)
 	
 	if visible:
-		var s = name + " visible"
 		if Upgrades.empty():
-			s += " no ups"
 			QuestionText.text = ALL_INVENTORIES_EMPTY_MSG \
 					if PlayerInventory.empty() \
 					else ALL_UPGRADES_DONE_MSG
 			state_machine.travel("Error")
 		
 		else:
-			s += " has ups"
 			state_machine.travel("Hidden")
 
-		print(s)
 	#--# GROUP METHODS #--# 
 
 

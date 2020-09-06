@@ -28,6 +28,10 @@ var old_tile:int = -1
 
 
 #### MAIN METHODS ####
+
+func _ready():
+	pass
+
 #--# MAIN METHODS #--#
 
 
