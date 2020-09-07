@@ -48,14 +48,14 @@ const Skins := {
 		'f': preload("res://assets/ui/lockpad/display/f.png"),
 		'F': preload("res://assets/ui/lockpad/display/f.png"),
 		
-		'x': preload("res://assets/ui/lockpad/display/i1.png"),
-		'X': preload("res://assets/ui/lockpad/display/i1.png"),
-		'y': preload("res://assets/ui/lockpad/display/i2.png"),
-		'Y': preload("res://assets/ui/lockpad/display/i2.png"),
-		'z': preload("res://assets/ui/lockpad/display/i3.png"),
-		'Z': preload("res://assets/ui/lockpad/display/i3.png"),
-		'w': preload("res://assets/ui/lockpad/display/i4.png"),
-		'W': preload("res://assets/ui/lockpad/display/i4.png")
+		'w': preload("res://assets/ui/lockpad/display/i1.png"),
+		'W': preload("res://assets/ui/lockpad/display/i1.png"),
+		'x': preload("res://assets/ui/lockpad/display/i2.png"),
+		'X': preload("res://assets/ui/lockpad/display/i2.png"),
+		'y': preload("res://assets/ui/lockpad/display/i3.png"),
+		'Y': preload("res://assets/ui/lockpad/display/i3.png"),
+		'z': preload("res://assets/ui/lockpad/display/i4.png"),
+		'Z': preload("res://assets/ui/lockpad/display/i4.png")
 	}
 
 # settings
