@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Resources/AutoWalkPath.gd"
 }, {
-"base": "Reference",
+"base": "AnimationTree",
 "class": "BeetaloStateMachine",
 "language": "GDScript",
 "path": "res://src/world/Mobs/BeetaloStateMachine.gd"
@@ -129,7 +129,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/world/Statics/ControlBoardIOs.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "ControlBoardInput",
 "language": "GDScript",
 "path": "res://src/world/Statics/ControlBoardInput.gd"
@@ -164,7 +164,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/world/AutoTiling/Fog.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "GameWorld2D",
 "language": "GDScript",
 "path": "res://src/world/GameWorld2D.gd"
