@@ -158,7 +158,6 @@ margin_bottom = 66.0
 visible = false
 chosen_answer_color = Color( 1, 1, 1, 1 )
 answers_characters_shown = 0
-answers_disabled = true
 
 [node name="LockpadGUI" parent="GUILayer" instance=ExtResource( 2 )]
 visible = false
