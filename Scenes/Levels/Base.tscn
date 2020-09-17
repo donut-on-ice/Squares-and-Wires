@@ -41,11 +41,10 @@ position = Vector2( 240, 64 )
 
 [node name="Terminal" parent="Objects/Statics" index="2" instance=ExtResource( 5 )]
 position = Vector2( 208, 48 )
-frame = 2
+frame = 9
 
 [node name="Vat" parent="Objects/Statics" index="3" instance=ExtResource( 8 )]
 position = Vector2( 240, 208 )
-frame = 3
 
 [node name="Player" parent="Objects/Mobs/Allies" index="0" instance=ExtResource( 1 )]
 position = Vector2( 176, 112 )

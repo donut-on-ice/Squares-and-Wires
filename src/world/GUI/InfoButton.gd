@@ -3,19 +3,26 @@ class_name InfoButton extends TextureButton
 #### VARS ####
 # enums
 # consts
-const Texts := { # TODO add texts for each case
-		SceneManager.Cases.NONE: null,
-		SceneManager.Cases.MAP: null,
-		SceneManager.Cases.CONTROL_BOARD: null,
-		SceneManager.Cases.LOCKPAD: null,
-		SceneManager.Cases.UPGRADE_TABLE: null,
-		SceneManager.Cases.INVENTORY: null
+const Texts := {
+		SceneManager.Cases.MAP: """
+			\"WASD\"/\"Right Click\" to move
+			\"Left Click\" to interact
+			\"CTRL\" + \"Right Click\" to command the robot
+		""",
+		SceneManager.Cases.CONTROL_BOARD: """
+			\"Left Click\" to use selected
+			\"Right Click\" to use selected tool alternative mode
+			\"R\" to rotate components
+			Press \"1\",\"2\",\"3\" or \"4\" to toggle input bits
+			Press \"CTRL\" + \"1\",\"2\",\"3\",\"4\",\"5\" or \"6\" to select components
+			Press \"R\",\"T\",\"F\" or \"G\" to switch between tools
+		"""
 	}
 
 # settings
 # singletons
 # nodes
-onready var InfoText:Control # TODO add info text object
+onready var info:Label = get_parent().get_node("Info")
 
 # public
 # private
@@ -49,8 +56,12 @@ func _unhandled_input(event:InputEvent) -> void:
 #### STATE CHANGING METHODS ####
 
 ### setters ###
-func set_text(_case:int):
-	pass # TODO
+func set_text(case:int):
+	
+	if info == null:
+		return
+	
+	info.text = Texts[case] if Texts.has(case) else ""
 
 ### updates ###
 
@@ -90,9 +101,10 @@ func on_info_visible_change():
 
 
 func on_view_case_change():
-	var paused = Level.view_case_to_paused(SceneManager.view_case) \
-			or PuzzleOverview.view_case_to_paused(SceneManager.view_case)
-	set_text(SceneManager.Cases.NONE if paused else SceneManager.view_case)
+	set_text(SceneManager.view_case)
+	#var paused = Level.view_case_to_paused(SceneManager.view_case) \
+	#		or PuzzleOverview.view_case_to_paused(SceneManager.view_case)
+	var paused = not Texts.has(SceneManager.view_case)
 	visible = not paused
 	pause_mode = Node.PAUSE_MODE_STOP \
 			if paused \
