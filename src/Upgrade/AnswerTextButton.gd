@@ -4,11 +4,6 @@ class_name AnswerTextButton extends Label
 #### VARS ####
 # enums
 # consts
-const IDLE_COLOR = Color("a2ff99")
-const HOVERED_COLOR = Color("ffee83")
-const RIGHT_COLOR = Color("7ad5ff")
-const WRONG_COLOR = Color("ff5980")
-
 # settings
 export(int, 1, 8) var index:int = 1 setget set_index
 
@@ -83,20 +78,20 @@ func update_color():
 	if disabled:
 		
 		if ParentGUI == null or ParentGUI.pressed_index == 0:
-			set("custom_colors/font_color", IDLE_COLOR)
+			set("custom_colors/font_color", Utils.Colors.LIGHT_GREEN)
 
 		else:
-			set("custom_colors/font_color", RIGHT_COLOR if right_answer \
-					else WRONG_COLOR if ParentGUI.pressed_index == index \
-						else IDLE_COLOR)
+			set("custom_colors/font_color", Utils.Colors.LIGHT_BLUE if right_answer \
+					else Utils.Colors.LIGHT_RED if ParentGUI.pressed_index == index \
+						else Utils.Colors.LIGHT_GREEN)
 	
 	elif has_mouse():
 		if not is_hovered():
-			set("custom_colors/font_color", HOVERED_COLOR)
+			set("custom_colors/font_color", Utils.Colors.LIGHT_YELLOW)
 
 	else:
 		if not is_idle():
-			set("custom_colors/font_color", IDLE_COLOR)
+			set("custom_colors/font_color", Utils.Colors.LIGHT_GREEN)
 
 #--# STATE CHANGING METHODS #--#
 
@@ -107,11 +102,11 @@ func update_color():
 ### gets ###
 ### bools ###
 func is_hovered() -> bool:
-	return get("custom_colors/font_color") == HOVERED_COLOR
+	return get("custom_colors/font_color") == Utils.Colors.LIGHT_YELLOW
 
 
 func is_idle() -> bool:
-	return get("custom_colors/font_color") == IDLE_COLOR
+	return get("custom_colors/font_color") == Utils.Colors.LIGHT_GREEN
 
 
 func has_point(point:Vector2) -> bool:

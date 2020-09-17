@@ -11,21 +11,25 @@ enum Slots {
 
 enum Levels {
 		NONE,
+		BASE,
 		LEVEL_STRESS_TEST,
 		LEVEL_TEST,
 		LEVEL_ONE,
 		LEVEL_DEMO,
-		LEVEL_SHORT_DEMO
+		LEVEL_SHORT_DEMO,
+		LEVEL_FUNCS
 	}
 
 # consts
 const ACCEPTED_UP_LEVELS := {
 		Levels.NONE: [],
+		Levels.BASE: [],
 		Levels.LEVEL_STRESS_TEST: [],
 		Levels.LEVEL_TEST: [0,1,3],
 		Levels.LEVEL_ONE: [0,1],
 		Levels.LEVEL_DEMO: [0, 1],
-		Levels.LEVEL_SHORT_DEMO: [0, 1]
+		Levels.LEVEL_SHORT_DEMO: [0, 1],
+		Levels.LEVEL_FUNCS: [0, 1]
 	}
 
 
@@ -38,11 +42,13 @@ const SavePaths := {
 	}
 
 const PackedLevelPaths := {
+		Levels.BASE: "res://Scenes/Levels/Base.tscn",
 		Levels.LEVEL_STRESS_TEST: "res://Scenes/Levels/StressTest.tscn",
 		Levels.LEVEL_TEST: "res://Scenes/Levels/TestMap.tscn",
 		Levels.LEVEL_ONE: "res://Scenes/Levels/StartArea.tscn",
 		Levels.LEVEL_DEMO: "res://Scenes/Levels/DemoMap.tscn",
-		Levels.LEVEL_SHORT_DEMO: "res://Scenes/Levels/ShortDemoMap.tscn"
+		Levels.LEVEL_SHORT_DEMO: "res://Scenes/Levels/ShortDemoMap.tscn",
+		Levels.LEVEL_FUNCS: "res://Scenes/Levels/DemoFuncsMap.tscn"
 	}
 
 const SaveNames := {
@@ -95,15 +101,13 @@ func _ready():
 	
 	set_current_game_slot(current_game_slot)
 
+
 func start_new_game():
 	
 	if current_game_slot == Slots.NONE:
 		return
 	
-	PlayerInventory.set_component_counts_from_preset(PlayerInventory.Presets.EMPTY)
-	PlayerInventory.player_upgrades.clear()
-	PlayerInventory.upgrades.clear()
-	PlayerInventory.robo_upgrades.clear()
+	PlayerInventory.reset_inventory()
 	
 	set_current_level_id(START_LEVEL)
 	
@@ -175,11 +179,11 @@ func load_game(game_slot:int):
 	SceneManager.view_case = SceneManager.Cases.MAP
 
 
-func exit(save_on_exit:bool = true):
-	
-	if save_on_exit and current_game_slot != Slots.NONE:
-		save_game(current_game_slot, SaveNames[current_game_slot])
-	
+func save():
+	save_game(current_game_slot, SaveNames[current_game_slot])
+
+
+func exit():
 	get_tree().quit()
 
 
@@ -199,6 +203,45 @@ func game_won():
 	set_current_level_id(Levels.NONE)
 	set_current_game_slot(Slots.NONE)
 	SceneManager.view_case = SceneManager.Cases.MENU
+
+
+func start_level(i:int):
+	
+	PlayerInventory.set_component_counts_from_preset(PlayerInventory.Presets.EMPTY)
+	
+	var level_id = START_LEVEL
+	
+	match i:
+		-2: level_id = Levels.LEVEL_FUNCS
+		-1: level_id = Levels.LEVEL_SHORT_DEMO
+		0: level_id = Levels.BASE
+		
+		1: level_id = Levels.LEVEL_ONE
+		2: level_id = Levels.LEVEL_ONE
+		3: level_id = Levels.LEVEL_ONE
+		4: level_id = Levels.LEVEL_ONE
+		5: level_id = Levels.LEVEL_ONE
+		6: level_id = Levels.LEVEL_ONE
+		7: level_id = Levels.LEVEL_ONE
+		
+		8: level_id = Levels.LEVEL_ONE
+		9: level_id = Levels.LEVEL_ONE
+		10: level_id = Levels.LEVEL_ONE
+		11: level_id = Levels.LEVEL_ONE
+		12: level_id = Levels.LEVEL_ONE
+		13: level_id = Levels.LEVEL_ONE
+		14: level_id = Levels.LEVEL_ONE
+		
+		_: level_id = START_LEVEL
+	
+	set_current_level_id(level_id)
+	SceneManager.view_case = SceneManager.Cases.MAP
+	set_current_game_slot(Slots.FIRST)
+
+
+func reset_levels():
+	PlayerInventory.reset_inventory()
+	set_current_game_slot(Slots.NONE)
 
 #--# MAIN METHODS #--#
 

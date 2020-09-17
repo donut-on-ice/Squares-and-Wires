@@ -172,10 +172,12 @@ func get_body_global_position() -> Vector2:
 
 ### utils ###
 func movement_input_to_vector2() -> Vector2:
-	return Vector2(
-		Input.get_action_strength("player_est") - Input.get_action_strength("player_west"),
-		Input.get_action_strength("player_south") - Input.get_action_strength("player_north")
-	).normalized()
+	return Vector2.ZERO \
+		if SceneManager.view_case != SceneManager.Cases.MAP \
+		else Vector2(
+				Input.get_action_strength("player_est") - Input.get_action_strength("player_west"),
+				Input.get_action_strength("player_south") - Input.get_action_strength("player_north")
+			).normalized()
 
 
 func direction_towards_mosue() -> Vector2:

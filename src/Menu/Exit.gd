@@ -1,4 +1,4 @@
-class_name Exit extends TextureButton
+class_name ee extends TextureButton
 
 #### VARS ####
 # enums

@@ -47,7 +47,7 @@ func _unhandled_key_input(event):
 		else: match view_case:
 		
 			Cases.MENU:
-				set_view_case(Cases.POPUP)
+				pass
 				
 			Cases.POPUP, \
 			Cases.MAP, \

@@ -904,7 +904,7 @@ position = Vector2( 0, -7 )
 texture = ExtResource( 2 )
 vframes = 20
 hframes = 14
-frame = 28
+frame = 30
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 visible = false
@@ -940,6 +940,7 @@ script = ExtResource( 10 )
 ability = SubResource( 5 )
 
 [node name="Shape" type="CollisionShape2D" parent="HitAreaTracks"]
+visible = false
 shape = SubResource( 6 )
 
 [node name="HitAreaHands" type="Area2D" parent="."]

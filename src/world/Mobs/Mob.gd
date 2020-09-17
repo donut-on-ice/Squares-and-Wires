@@ -78,7 +78,6 @@ func move(delta:float, acc_direction:Vector2 = Vector2.ZERO):
 		stats.move_parent(delta, acc_direction)
 	else:
 		stats.move_parent_along_path(delta)
-		
 
 
 func apply_effect(ability:Ability, multiplier:int = 1) -> bool:
@@ -170,6 +169,7 @@ func get_unique_name() -> String:
 
 
 #### SIGNAL METHODS ####
+
 func _on_orientation_changed():
 	pass
 

@@ -1,4 +1,5 @@
-class_name ng extends TextureButton
+tool
+extends BasicButton
 
 #### VARS ####
 # enums
@@ -6,6 +7,8 @@ class_name ng extends TextureButton
 # settings
 # singletons
 # nodes
+var popup
+
 # public
 # private
 # signals
@@ -14,6 +17,24 @@ class_name ng extends TextureButton
 
 
 #### MAIN METHODS ####
+
+func _ready():
+	
+	if Engine.editor_hint:
+		return
+	
+	on_game_slot_change()
+	add_to_group(Groups.GAME_STATE_WATCHERS)
+
+
+func _activate():
+	
+	if popup == null:
+		return
+	
+	popup.case = PopUp.Cases.RESET
+	popup.visible = true
+
 #--# MAIN METHODS #--#
 
 
@@ -39,6 +60,10 @@ class_name ng extends TextureButton
 
 
 #### GROUP METHODS ####
+
+func on_game_slot_change():
+	self.set_disabled(LevelManager.current_game_slot == LevelManager.Slots.NONE)
+
 #--# GROUP METHODS #--# 
 
 
@@ -50,17 +75,3 @@ class_name ng extends TextureButton
 
 #### CLASSES ####
 #--# CLASSES #--#
-
-
-func _on_NewGame_pressed():
-	
-		
-	if LevelManager.current_game_slot == LevelManager.Slots.NONE:
-		LevelManager.current_game_slot = LevelManager.Slots.FIRST
-		LevelManager.start_new_game()
-	else:
-		LevelManager.current_game_slot = LevelManager.Slots.FIRST
-		get_tree().call_group(Groups.MENU_POPUP,
-				Groups.MenuPopupFuncs.SET_CASE,
-				AreYouSurePopUP.Cases.OVERRIDE_WITH_NEW_GAME)
-		SceneManager.view_case = SceneManager.Cases.POPUP

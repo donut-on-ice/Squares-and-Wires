@@ -52,8 +52,8 @@ func set_hovered(h:bool):
 
 ### updates ###
 func activate():
-	
-	LevelManager.next_level()
+	LevelManager.game_won()
+	#LevelManager.next_level()
 
 
 #--# STATE CHANGING METHODS #--#

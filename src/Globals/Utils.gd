@@ -19,6 +19,18 @@ enum CollisionLayers {
 const ZERO := 0.001
 const INT_BITS := 64
 
+const Colors := {
+		BLACK = Color("0c0817"),
+		DARK_GREEN = Color("0b2b3b"),
+		LIGHT_RED = Color("ff5980"),
+		LIGHT_GREEN = Color("a2ff99"),
+		LIGHT_BLUE = Color("7ad5ff"),
+		LIGHT_YELLOW = Color("ffee83"),
+		MENU_LIGHT_BLUE = Color("5c81bd"),
+		MENU_BLUE = Color("4756a1"),
+		MENU_DARK_BLUE = Color("1c1452"),
+	}
+
 
 static func get_control_true_scale(c:Control) -> Vector2:
 	return c.rect_scale * (get_control_true_scale(c.get_parent()) \

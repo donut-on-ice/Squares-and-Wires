@@ -116,6 +116,13 @@ func set_can_radio(b:bool):
 		get_tree().call_group(Groups.PLAYER_INVENTORY_WATCHERS,
 				Groups.PlayerInventoryWatcherFuncs.ON_CAN_RADIO_CHANGE)	
 
+
+func reset_inventory():
+	set_component_counts_from_preset(Presets.EMPTY)
+	player_upgrades.clear()
+	upgrades.clear()
+	robo_upgrades.clear()
+
 ### updates ###
 func update_component_counts_watcehrs():
 	get_tree().call_group(Groups.PLAYER_INVENTORY_WATCHERS,

@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/shadermaterials/JitterFreeMaterial.tres" type="Material" id=1]
+[ext_resource path="res://assets/ui/lockpad/lockpad_background.png" type="Texture" id=2]
+
+[node name="Center" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.198425
+margin_bottom = 0.198425
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="."]
+margin_left = 499.0
+margin_top = 288.0
+margin_right = 524.0
+margin_bottom = 312.0
+
+[node name="Background" type="NinePatchRect" parent="Margin"]
+material = ExtResource( 1 )
+margin_right = 25.0
+margin_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+patch_margin_left = 13
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Margin"]
+margin_right = 25.0
+margin_bottom = 24.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}

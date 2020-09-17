@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Resources/AutoWalkPath.gd"
 }, {
+"base": "TextureButton",
+"class": "BasicButton",
+"language": "GDScript",
+"path": "res://src/GUI/BasicButton.gd"
+}, {
 "base": "AnimationTree",
 "class": "BeetaloStateMachine",
 "language": "GDScript",
@@ -114,10 +119,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/puzzle/ConnectionHolder.gd"
 }, {
-"base": "TextureButton",
+"base": "BasicButton",
 "class": "Continue",
 "language": "GDScript",
-"path": "res://src/Menu/Continue.gd"
+"path": "res://src/GUI/Continue.gd"
 }, {
 "base": "StaticBody2D",
 "class": "ControlBoard",
@@ -154,10 +159,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/world/AutoTiling/Editor.gd"
 }, {
-"base": "TextureButton",
+"base": "BasicButton",
 "class": "Exit",
 "language": "GDScript",
-"path": "res://src/Menu/Exit.gd"
+"path": "res://src/GUI/Exit.gd"
 }, {
 "base": "TileMap",
 "class": "Fog",
@@ -269,6 +274,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/world/Lockpad/LSText.gd"
 }, {
+"base": "Label",
+"class": "LabelWithHighlight",
+"language": "GDScript",
+"path": "res://src/GUI/LabelWithHighlight.gd"
+}, {
 "base": "Node",
 "class": "LeftPanel",
 "language": "GDScript",
@@ -349,10 +359,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/puzzle/gui/MouseToolButton.gd"
 }, {
-"base": "TextureButton",
+"base": "BasicButton",
 "class": "NewGame",
 "language": "GDScript",
-"path": "res://src/Menu/NewGame.gd"
+"path": "res://src/GUI/NewGame.gd"
 }, {
 "base": "HBoxContainer",
 "class": "Number",
@@ -438,6 +448,11 @@ _global_script_classes=[ {
 "class": "Point",
 "language": "GDScript",
 "path": "res://src/Resources/Point.gd"
+}, {
+"base": "ColorRect",
+"class": "PopUp",
+"language": "GDScript",
+"path": "res://Scenes/MenuGUI/PopUp.gd"
 }, {
 "base": "Control",
 "class": "PuzzleGUI",
@@ -568,6 +583,21 @@ _global_script_classes=[ {
 "class": "UpgradeScreenGUI",
 "language": "GDScript",
 "path": "res://src/Upgrade/UpgradeScreenGUI.gd"
+}, {
+"base": "TextureButton",
+"class": "ee",
+"language": "GDScript",
+"path": "res://src/Menu/Exit.gd"
+}, {
+"base": "TextureButton",
+"class": "ng",
+"language": "GDScript",
+"path": "res://src/Menu/NewGame.gd"
+}, {
+"base": "TextureButton",
+"class": "oldc",
+"language": "GDScript",
+"path": "res://src/Menu/Continue.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
@@ -579,6 +609,7 @@ _global_script_class_icons={
 "AreaWithTargets": "",
 "Attack": "",
 "AutoWalkPath": "",
+"BasicButton": "",
 "BeetaloStateMachine": "",
 "BitMaskShape": "",
 "Bugs": "",
@@ -622,6 +653,7 @@ _global_script_class_icons={
 "LSChar": "",
 "LSString": "",
 "LSText": "",
+"LabelWithHighlight": "",
 "LeftPanel": "",
 "Level": "",
 "LockpadEnterKey": "",
@@ -656,6 +688,7 @@ _global_script_class_icons={
 "PlayerStateMachine": "",
 "PlayerStats": "",
 "Point": "",
+"PopUp": "",
 "PuzzleGUI": "",
 "PuzzleIOStateHolder": "",
 "PuzzleIOStateWatcher": "",
@@ -681,7 +714,10 @@ _global_script_class_icons={
 "TrueBitMatrix": "",
 "Upgrade": "",
 "UpgradeScreen": "",
-"UpgradeScreenGUI": ""
+"UpgradeScreenGUI": "",
+"ee": "",
+"ng": "",
+"oldc": ""
 }
 
 [application]
@@ -717,7 +753,7 @@ window/stretch/aspect="keep"
 
 [gui]
 
-theme/custom_font="res://assets/fonts/gamegirl_font.tres"
+theme/custom_font="res://assets/fonts/aseprite_font.tres"
 common/snap_controls_to_pixels=false
 
 [input]

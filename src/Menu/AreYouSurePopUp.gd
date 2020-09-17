@@ -107,9 +107,10 @@ func _on_Yes_pressed():
 		Cases.OVERRIDE_WITH_NEW_GAME:
 			LevelManager.start_new_game()
 		Cases.EXIT_AND_SAVE:
-			LevelManager.exit(true)
+			LevelManager.save()
+			LevelManager.exit()
 		Cases.EXIT:
-			LevelManager.exit(false)
+			LevelManager.exit()
 
 
 func _on_No_pressed():
